@@ -1,0 +1,55 @@
+---
+layout: default
+---
+
+<div id="main" role="main">
+  <div class="apps-hero">
+    <h1 class="apps-hero__title">{{ page.title }}</h1>
+    {% if page.subtitle %}
+    <p class="apps-hero__subtitle">{{ page.subtitle }}</p>
+    {% endif %}
+  </div>
+
+  <div class="apps-grid">
+    {% for app in site.data.apps %}
+    <article class="app-card">
+      <div class="app-card__icon">
+        <img
+          src="{{ app.icon | relative_url }}"
+          alt="{{ app.name }} 앱 아이콘"
+        />
+      </div>
+      <div class="app-card__body">
+        <h2 class="app-card__title">{{ app.name }}</h2>
+        <p class="app-card__tagline">{{ app.tagline }}</p>
+        <p class="app-card__description">{{ app.description }}</p>
+
+        {% if app.features %}
+        <ul class="app-card__features">
+          {% for feature in app.features %}
+          <li>{{ feature }}</li>
+          {% endfor %}
+        </ul>
+        {% endif %}
+
+        <div class="app-card__actions">
+          <a
+            class="btn btn--primary"
+            href="{{ app.play_store_url }}"
+            target="_blank"
+            rel="noopener noreferrer"
+            >Google Play에서 다운로드</a
+          >
+          {% if app.privacy_url %}
+          <a
+            class="btn btn--inverse"
+            href="{{ app.privacy_url | relative_url }}"
+            >개인정보처리방침</a
+          >
+          {% endif %}
+        </div>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</div>

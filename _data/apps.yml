@@ -1,0 +1,16 @@
+# List of apps shown on the homepage.
+# Add a new entry here whenever a new app is released.
+- id: fullweight
+  name: "FullWeight"
+  tagline: "체중, 식사, 눈바디까지 한 번에 기록하는 다이어트 관리 앱"
+  description: >
+    몸무게, 식사, 눈바디(체형 변화) 사진을 한 곳에서 기록하고, AI가 음식 사진을 분석해
+    칼로리와 영양소까지 자동으로 계산해주는 다이어트 관리 앱입니다.
+  icon: /assets/images/apps/fullweight/icon.png
+  play_store_url: "https://play.google.com/store/apps/details?id=com.choimanseon.fullweight"
+  privacy_url: /privacy/fullweight/
+  features:
+    - "체중 · 식사 · 눈바디 기록 관리"
+    - "AI 음식 사진 분석으로 자동 칼로리 계산"
+    - "Google Drive 백업 및 복원"
+    - "챌린지 기능으로 목표 관리"
