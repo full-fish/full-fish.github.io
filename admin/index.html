@@ -191,11 +191,23 @@ permalink: /admin/
     </div>
 
     <div id="delete-modal" class="modal-overlay" aria-hidden="true">
-      <div class="modal" role="dialog" aria-modal="true" aria-labelledby="delete-modal-title">
+      <div
+        class="modal"
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="delete-modal-title"
+      >
         <h2 id="delete-modal-title">카테고리 삭제 확인</h2>
         <p id="delete-modal-message"></p>
-        <label for="delete-confirm-input">삭제하려면 아래에 확인을 입력하세요</label>
-        <input id="delete-confirm-input" type="text" autocomplete="off" placeholder="확인" />
+        <label for="delete-confirm-input"
+          >삭제하려면 아래에 확인을 입력하세요</label
+        >
+        <input
+          id="delete-confirm-input"
+          type="text"
+          autocomplete="off"
+          placeholder="확인"
+        />
         <div class="modal-actions">
           <button id="delete-cancel">취소</button>
           <button id="delete-confirm" class="danger" disabled>확인</button>
