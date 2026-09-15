@@ -1,44 +1,75 @@
 categories:
   - name: Project
     children:
-      - name: arduino
+      - name: arduino1
+        children: []
       - name: codestates-final-project
+        children: []
       - name: codestates-first-project
+        children: []
       - name: fullmemo
+        children: []
       - name: fullweight
+        children: []
       - name: mini-project
+        children: []
       - name: multicampus-project
+        children: []
       - name: unity
+        children: []
   - name: RN
+    children: []
   - name: nomadcoder
     children:
       - name: React JS 마스터클래스
+        children: []
       - name: React JS로 영화 웹 서비스 만들기
+        children: []
       - name: Typescript로 블록체인 만들기
+        children: []
       - name: Vanilla JS
+        children: []
   - name: 기타
     children:
       - name: 기타
+        children: []
       - name: 비공개
+        children: []
   - name: 데이터 분석
     children:
       - name: python
+        children: []
       - name: 데이터 수집
+        children: []
       - name: 데이터 시각화
+        children: []
       - name: 머신러닝
+        children: []
       - name: 딥러닝
+        children: []
       - name: 통계
+        children: []
   - name: 코딩 공부
     children:
       - name: 검색
+        children: []
       - name: 공부
+        children: []
       - name: 보안
+        children: []
       - name: 코드스테이츠 TIL
+        children: []
   - name: 코딩 테스트
     children:
       - name: 기타
+        children: []
       - name: 알고리즘 공부
+        children: []
       - name: 알고리즘 문제 푼거 모음
+        children: []
       - name: 프로그래머스 level1
+        children: []
       - name: 프로그래머스 level2
+        children: []
       - name: 프로그래머스 level3
+        children: []
