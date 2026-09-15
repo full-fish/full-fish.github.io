@@ -107,6 +107,9 @@ GEM
 
 PLATFORMS
   arm64-darwin-20
+  ruby
+  universal-darwin-25
+  x86_64-linux
 
 DEPENDENCIES
   bundler
