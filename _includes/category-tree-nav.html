@@ -1,0 +1,42 @@
+{% assign nodes = include.nodes %}
+{% assign path_prefix = include.path_prefix | default: '' %}
+{% if nodes and nodes.size > 0 %}
+<ul{% if include.is_child %} class="nav__child-items"{% else %} class="nav__items"{% endif %}>
+  {% for node in nodes %}
+    {% assign node_name = node.name | default: node %}
+    {% if path_prefix == '' %}
+      {% assign node_path = node_name %}
+    {% else %}
+      {% assign node_path = path_prefix | append: '||' | append: node_name %}
+    {% endif %}
+
+    {% assign node_count = 0 %}
+    {% assign path_parts = node_path | split: '||' %}
+    {% for post in site.posts %}
+      {% if post.categories %}
+        {% assign matched = true %}
+        {% for part in path_parts %}
+          {% assign idx = forloop.index0 %}
+          {% if post.categories.size <= idx or post.categories[idx] != part %}
+            {% assign matched = false %}
+            {% break %}
+          {% endif %}
+        {% endfor %}
+        {% if matched %}
+          {% assign node_count = node_count | plus: 1 %}
+        {% endif %}
+      {% endif %}
+    {% endfor %}
+
+    {% assign node_slug = node_name | slugify | downcase %}
+    <li>
+      <a href="{{ '/categories/' | relative_url }}#{{ node_slug }}">
+        <span class="nav__sub-title">{{ node_name }} ({{ node_count }})</span>
+      </a>
+      {% if node.children and node.children.size > 0 %}
+        {% include category-tree-nav.html nodes=node.children path_prefix=node_path is_child=true %}
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>
+{% endif %}

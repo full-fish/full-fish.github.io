@@ -1,0 +1,11 @@
+---
+layout: nil
+permalink: /admin/config.json
+---
+{
+  "masterGithubLogin": "{{ site.data.admin.master_github_login }}",
+  "repositoryOwner": "{{ site.data.admin.repository_owner }}",
+  "repositoryName": "{{ site.data.admin.repository_name }}",
+  "defaultBranch": "{{ site.data.admin.default_branch }}",
+  "categoryTreePath": "_data/category_tree.yml"
+}
