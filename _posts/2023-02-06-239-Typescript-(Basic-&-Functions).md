@@ -1,0 +1,320 @@
+---
+title: "Typescript (Basic & Functions)"
+date: 2023-02-06 23:05:04 +0900
+render_with_liquid: false
+categories: ["nomadcoder", "Typescript로 블록체인 만들기"]
+tags: ["TypeScript"]
+---
+
+#### **쓰는 이유**
+
+1. Type 안정성
+
+```javascript
+// js는 
+[1,2,3] + false === '1,2,3false'
+
+function divide(a,b){
+  return a/b
+}
+divide('xxx') === NaN
+// 인자가 2개가 들어오지도 않았고 타입도 안맞지만 에러를 안띄움
+```
+
+2. 런타임에러(코드실행중의 에러) 방지
+
+```javascript
+const obj = {name:'manseon'}
+obj.hi()
+// obj.hi is no a function에러가 뜸 
+// 즉, 실행을 이미 시키고 에러를 띄움
+// 애초에 obj에 hi가 없음을 먼저 인지하는 편이 좋음
+```
+
+#### **문법**
+
+타입을 지정안해줘도 추론함
+
+```javascript
+let a = 'a'
+a = 'b'
+// ok
+
+let a = 'a'
+a = 1 
+//type 에러 남
+```
+
+구체적 명시
+
+```javascript
+let b : boolean = 'x'
+// 에러남
+
+let arr: number[] = [1, 2, 3]
+// ok
+```
+
+객체의 키 하나하나 타입 할당 및 선택적 키
+
+```typescript
+const player1: {
+  name: string
+  age?: number
+} = {
+  name: 'manseon',
+}
+const player2: {
+  name: string
+  age?: number
+} = {
+  name: 'yury',
+}
+```
+
+별칭
+
+```typescript
+type Age = number
+type Player = {
+  name: string
+  age?: Age
+}
+const player3: Player = {
+  name: 'pary',
+}
+```
+
+함수의 리턴값 타입정하기(Player 타입을 리턴함)
+
+```typescript
+function playerMaker(name: string): Player {
+  return {
+    name,
+  }
+}
+const manseon = playerMaker('manseon')
+manseon.age = 12
+```
+
+화살표 함수라면
+
+```typescript
+const playerMaker2 = (name: string): Player => ({ name })
+```
+
+readonly js에서 const를 하더라도 배열의 경우 직접 다른 배열을 못넣지만 push나 한 요소에는 다른걸 넣을 수 있다
+
+```typescript
+type Player2 = {
+  readonly name: string
+  age?: Age
+}
+const numbers: readonly number[] = [1, 2]
+numbers[1] = 2 //에러
+```
+
+Tuple 각 매개변수 타입 지정
+
+```typescript
+const man: [string, number, boolean] = ['manseon', 13, true]
+```
+
+any : 타입스크립트에서 나오고 싶을 때
+
+```typescript
+const d: any[] = [1, 2, 3]
+const e: any = true
+d + e
+```
+
+unknown : any랑 비슷하지만 unknown이 더 안전 unknown으로 작업 수행하는것은 불법?적인일임
+
+```typescript
+let f: unknown
+if (typeof f === 'number') {
+  let g = f + 1
+}
+let h = f.toUpperCase() // 이건 안되지만 아래처럼 하면 됨
+if (typeof f === 'string') {
+  let h = f.toUpperCase()
+}
+```
+
+void : return값이 없는 함수를 뜻함
+
+never : 함수가 return하지 않을 때 발생 (일부 함수는 값을 반환 x. 이는 함수가 예외를 throw하거나 프로그램 실행을 종료함을 의미)
+
+```typescript
+function never(name: string | number) {
+  if (typeof name === 'string') {
+    name // 여기선 string
+  } else if (typeof name === 'number') {
+    name // 여기선 number
+  } else {
+    name // 여기선 never
+  }
+}
+```
+
+#### **Funtions**
+
+일반적인 함수 선언
+
+```typescript
+function add(a: number, b: number) {
+  return a + b
+}
+const add2 = (a: number, b: number) => a + b
+```
+
+Call Signatures
+
+```typescript
+type Add = (a: number, b: number) => number
+type Add2 = {
+  (a: number, b: number): number
+}
+const add3: Add = (a, b) => a + b
+```
+
+Overloading : 여러개의 Call Signatures이 있는 함수
+
+```typescript
+type Add3 = {
+  (a: number, b: number): number
+  (a: number, b: string): number
+}
+const add4: Add3 = (a, b) => {
+  if (typeof b === 'string') return a
+  return a + b
+}
+
+//? 일상생활에서의 Overloading 예시 nextJs에서 라우팅시 아래처럼 객체가 올수도 문자열이 올수도 있음
+Router.push({
+  path: '/home',
+  state: 1,
+})
+Router.push('home')
+//? 그래서 이렇게 해줘야함
+type Config = {
+  path: string
+  state: object
+}
+type Push = {
+  (path: string): void
+  (config: Config): void
+}
+const push: Push = config => {
+  if (typeof config === 'string') console.log(config)
+  else console.log(config.path, config.state)
+}
+
+//? 매개변수의 갯수가 다를 때
+type Add4 = {
+  (a: number, b: number): number
+  (a: number, b: number, c: number): number
+}
+//아마도 c는 number일거다라고 명시
+const add5: Add4 = (a, b, c?: number) => {
+  if (c) return a + b + c
+  return a + b
+}
+```
+
+다형성(Polymorphism)
+
+```typescript
+//! 다형성(Polymorphism) : any를 안쓰는 이유는 다형성이 더 안전하기에 [1,true,'a']같은 경우 해당 배열의
+//! 첫번째 인자에 toUpperCase()같은거가 다형성의 경우 오류를 잡지만 any는 못잡음
+//! generic이란 타입의 placeholder같은거
+//! 제네릭은 선언 시점이 아니라 생성 시점에 타입을 명시하여 하나의 타입만이 아닌 다양한 타입을 사용할 수 있도록 하는 기법이다
+//? concrete type : 우리가 일반적으로 봐왔던 number, boolean, any같은 타입
+type SuperPrint = {
+  (arr: number[]): void
+  (arr: boolean[]): void
+}
+const superPrint: SuperPrint = arr => {
+  arr.forEach(i => console.log(i))
+}
+
+superPrint([1, 2, 3, 4])
+superPrint([true, false, true])
+superPrint(['a', 'b']) //? 얘는 작동안함 그렇다면 type선언 부분에 string도 넣어줘야할까?
+//? 그러면 작동은 하겠지만 다형성을 이용하는것은 아님
+superPrint([1, 2, true, false]) //? 이것또한 작동하지 위와 마찬가지로 type선언부분에
+//? (arr:(number|boolean)[]):void를 하면 되긴함
+
+type SuperSuperPrint = {
+  <T>(arr: T[]): T
+}
+//? 위랑 같음
+// type SuperSuperPrint=<T>(arr:T[])=>T
+const superSuperPrint: SuperSuperPrint = arr => arr[0]
+
+superSuperPrint([1, 2, 3, 4])
+superSuperPrint([true, false, true])
+superSuperPrint(['a', 'b'])
+superSuperPrint([1, 2, true, false])
+const h = superSuperPrint([1, true, 'a', 1])
+h.toUpperCase()
+
+//? 2개의 generic쓰기
+type Two = <T, M>(a: T[], b: M) => T // 첫번째 파라미터로
+const two: Two = arr => arr[0]
+const i = two([1, 2, 3], 'x')
+
+//? 다른 방법으로 쓰기
+function superPrint2<T>(a: T[]) {
+  return a[0]
+}
+//? 확장하기
+type Player4<E> = {
+  name: string
+  extraInfo: E
+}
+// const nico: Player4<{ favFood: string }> = {
+//   name: 'nico',
+//   extraInfo: {
+//     favFood: 'kimchi',
+//   },
+// }
+//? 위랑 아래랑 같음
+type NicoExtra = {
+  favFood: string
+}
+// type NicoPlayer = Player4<{ favFood: string }>
+type NicoPlayer = Player4<NicoExtra>
+const nico: NicoPlayer = {
+  name: 'nico',
+  extraInfo: {
+    favFood: 'kimchi',
+  },
+}
+//? 타입에 많은정보들이 있는데 하나만 바꾸고싶을때 generic쓰면됨
+const lynn: Player4<null> = {
+  name: 'lynn',
+  extraInfo: null,
+}
+//? generic 예시들
+type J = Array<number>
+let j: J = [1, 2, 3, 4]
+
+function printAllNumbers(arr: number[]) {}
+// 같은거
+function printAllNumbers2(arr: Array<number>) {}
+
+//! 과제
+type Last = <T>(arr: T[]) => T
+const last: Last = arr => arr[arr.length - 1]
+const lastNum = last([1, 2, 3])
+console.log(lastNum)
+
+type Prepend = (arr: any[], item: any) => any[]
+const prepend: Prepend = (arr, item) => {
+  arr.unshift(item)
+  return arr
+}
+const bb = prepend([1, 2, 3], 0)
+console.log(bb)
+```
