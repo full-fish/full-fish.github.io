@@ -12,7 +12,7 @@ tags: ["카이사르", "caesar cipher"]
 
 예 : 'abz'를 +1만큼 shift -> 'bca'
 
-![](/assets/images/tistory/137/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/137/img.png)
 
 
 출처 : 위키백과

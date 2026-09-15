@@ -10,13 +10,13 @@ tags: ["PROJECT"]
 
 **Highlight 적용**
 
-![](/assets/images/tistory/104/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/104/img.png)
 
 검색을 한 글자를 빨간색으로 반환
 
 **가중치 적용**
 
-![](/assets/images/tistory/104/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/104/img_1.png)
 
 원래 db상 '과일먹자'가 '과자냠냠'보다 id값이 빨라서 상단에 위치했는데
 
@@ -38,7 +38,7 @@ NodeList(13) [div.title, div.title, div.title, div.title, div.title, div.title,
 배열로 나온다
 ```
 
-![](/assets/images/tistory/104/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/104/img_2.png)
 
 이런식으로
 
@@ -48,7 +48,7 @@ console.log(result[0])
 
 하나만을 출력하면
 
-![](/assets/images/tistory/104/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/104/img_3.png)
 
 해당 div의 내용이 나온다
 

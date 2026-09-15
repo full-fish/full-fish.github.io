@@ -41,7 +41,7 @@ kmeans = KMeans(
 * k가 늘어날수록 SSE는 무조건 작아집니다.
 * 하지만 특정 지점부터는 감소 폭이 확 줄어드는데, 그 꺾이는 지점(팔꿈치 모양)을 최적의 k 후보로 봅니다.
 
-![](/assets/images/tistory/321/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/321/img.png)
 
 ### B. 실루엣 계수 (Silhouette Score)
 
@@ -52,7 +52,7 @@ kmeans = KMeans(
 * 점수 해석: +1에 가까울수록 자기 군집에 잘 속해 있고 다른 군집과는 잘 분리된 상태입니다. 0은 경계, 음수는 잘못 분류된 상태를 의미합니다.
 * 수식: a(i)는 내 군집 내 평균 거리, b(i)는 가장 가까운 타 군집과의 평균 거리일 때 다음과 같습니다.
 
-![](/assets/images/tistory/321/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/321/img_1.png)
 
 ---
 
@@ -314,6 +314,6 @@ plt.title("Silhouette Method")
 plt.show()
 ```
 
-![](/assets/images/tistory/321/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/321/img_2.png)
 
-![](/assets/images/tistory/321/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/321/img_3.png)

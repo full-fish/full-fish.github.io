@@ -32,7 +32,7 @@ SVD를 통해 분해된 결과는 다음과 같은 정보를 제공하며, 이�
 
 **SVD(특이값 분해)**
 
-![](/assets/images/tistory/316/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/316/img.png)
 
 |  |  |  |  |
 | --- | --- | --- | --- |
@@ -85,7 +85,7 @@ SVD는 데이터의 본질적인 구조를 중요도 순으로 분리해내어, 
 LSA는 TF-IDF 행렬 X에 SVD를 적용해  
 큰 행렬을 “주제 공간 K차원”으로 축소함:
 
-![](/assets/images/tistory/316/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/316/img_1.png)
 
 ​
 
@@ -383,7 +383,7 @@ plt.colorbar(scatter, ticks=range(10), label="Digit Label")
 plt.show()
 ```
 
-![](/assets/images/tistory/316/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/316/img_2.png)
 
 ```python
 # 필요한 라이브러리 임포트
@@ -799,4 +799,4 @@ plt.tight_layout()
 plt.show()
 ```
 
-![](/assets/images/tistory/316/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/316/img_3.png)

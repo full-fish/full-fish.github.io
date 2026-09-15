@@ -20,7 +20,7 @@ P = sigmoid(z)  z=0이면 0.5, z가 커질수록 1에 가깝고, 작아질수�
 
 소프트맥스함수: 다중 분류에 사용
 
-![](/assets/images/tistory/300/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/300/img.png)
 
 입력 데이터가 각 클래스에 속할 확률 계산
 
@@ -378,7 +378,7 @@ Feature의 개수를 줄이거나, Dropout(신경망)을 수행
 
 **평가지표**
 
-![](/assets/images/tistory/300/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/300/img_1.png)
 
 **예시 코드**
 

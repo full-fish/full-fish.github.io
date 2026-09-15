@@ -6,12 +6,12 @@ categories: ["코딩 테스트", "알고리즘 공부"]
 tags: ["sort", "정렬", "선택 정렬", "Selection Sort"]
 ---
 
-![](/assets/images/tistory/146/selection_AdobeExpress.gif)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/146/selection_AdobeExpress.gif)
 
 
 [ 65, 73, 67, 98, 75, 80, 87, 30, 61, 45, 4, 36, 52, 5, 23, 68, 71, 70, 61, 21, 29, 73, 36, 90, 13,&nbsp; 97, 14, 71, 1, 51, 49, 3, 15, 64, 51, 87, 80, 8, 73, 84, 21, 93, 46, 87, 49, 41, 77, 40, 73, 96]
 
-![](/assets/images/tistory/146/img.gif)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/146/img.gif)
 
 #### **선택 정렬이란?**
 

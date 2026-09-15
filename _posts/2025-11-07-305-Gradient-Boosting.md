@@ -10,7 +10,7 @@ categories: ["데이터 분석", "머신러닝, 딥러닝"]
 
 잔차(residual): 실제 값과의 차이
 
-![](/assets/images/tistory/305/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/305/img.png)
 
 ```python
 learning_rate

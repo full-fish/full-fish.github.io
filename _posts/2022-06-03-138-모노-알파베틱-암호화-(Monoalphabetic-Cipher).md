@@ -10,7 +10,7 @@ tags: ["암호화", "모노알파베틱", "Monoalphabetic Cipher", "Monoalphabet
 
 26자의 알파벳을 각기 다른 알파벳으로 치환시킴
 
-![](/assets/images/tistory/138/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/138/img.png)
 
 #### **코드화**
 

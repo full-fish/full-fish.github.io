@@ -63,7 +63,7 @@ categories: ["데이터 분석", "머신러닝, 딥러닝"]
 4. 역전파로 가중치 조정 (Backward)  
    → 이 과정을 수백~수천 번 반복하면서 손실이 줄어드는 방향으로 학습됨.
 
-![](/assets/images/tistory/310/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/310/img.png)
 
 이론 단계 파이토치 코드 의미 설명
 
@@ -465,6 +465,6 @@ plt.show()
 #                 또는 선형모델에 다항/상호작용 특성 추가로 베이스라인 상향.
 ```
 
-![](/assets/images/tistory/310/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/310/img_1.png)
 
-![](/assets/images/tistory/310/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/310/img_2.png)

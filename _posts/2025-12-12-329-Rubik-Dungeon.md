@@ -5,7 +5,7 @@ render_with_liquid: false
 categories: ["Project", "unity"]
 ---
 
-![](/assets/images/tistory/329/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/329/img.png)
 
 **게임 플레이 링크**
 
@@ -53,14 +53,14 @@ github.com](https://github.com/full-fish/RubicksDungeon)
 
 오브젝트 아이디 하나에 이동 가능(isShift), 밀기 가능(isPush), 사운드등 여러 속성을 독립적으로 부여할 수 있습니다. 덕분에 새로운 기믹을 추가할 때 코드를 수정하는 대신 아이디에 속성을 체크하는 것만으로 확장이 용이합니다.
 
-![](/assets/images/tistory/329/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/329/img_1.png)
 
 
 오브젝트별 속성
 
 **스크립트 기능별 분리**
 
-![](/assets/images/tistory/329/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/329/img_2.png)
 
 
 스크립트 분리

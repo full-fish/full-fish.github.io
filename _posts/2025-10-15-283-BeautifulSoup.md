@@ -337,14 +337,14 @@ for i, q in enumerate(quotes, 1):
 </html>
 ```
 
-![](/assets/images/tistory/283/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/283/img.png)
 
-![](/assets/images/tistory/283/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/283/img_1.png)
 
-![](/assets/images/tistory/283/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/283/img_2.png)
 
-![](/assets/images/tistory/283/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/283/img_3.png)
 
-![](/assets/images/tistory/283/img_4.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/283/img_4.png)
 
-![](/assets/images/tistory/283/img_5.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/283/img_5.png)

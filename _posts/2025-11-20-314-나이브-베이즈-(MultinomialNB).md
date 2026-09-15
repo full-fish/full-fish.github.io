@@ -14,7 +14,7 @@ categories: ["데이터 분석", "머신러닝, 딥러닝"]
 
 **수식**
 
-![](/assets/images/tistory/314/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/314/img.png)
 
 **P(c) = 사전확률(prior)**
 
@@ -77,7 +77,7 @@ P(X|긍정) \* P(긍정)
 
 → 그래서 “긍정”으로 분류됨.
 
-![](/assets/images/tistory/314/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/314/img_1.png)
 
 **나이브(naive) 가정**  
 클래스가 주어졌을 때 **문장 속 단어들은 서로 독립**이라고 가정
@@ -156,7 +156,7 @@ P(X|긍정) \* P(긍정)
 
 공식:
 
-![](/assets/images/tistory/314/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/314/img_2.png)
 
 ​
 
@@ -206,7 +206,7 @@ P(“최고다” | 부정) = 0
 
 즉, **α는 단어가 한 번도 나오지 않았을 때도 확률을 부드럽게 만들어주는 역할.**
 
-![](/assets/images/tistory/314/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/314/img_3.png)
 
 **MultinomialNB()의 하이퍼 파라미터**
 

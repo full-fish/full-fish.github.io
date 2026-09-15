@@ -24,7 +24,7 @@ render_with_liquid: false
 고차원 공간에서는 서로 다른 클래스를 선형(직선 또는 초평면)으로 분리하기가 쉬워짐.  
 그래서 선형 SVM(LinearSVC)이 텍스트 분류에서 높은 성능을 보임.
 
-![](/assets/images/tistory/315/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/315/img.png)
 
 **그림 설명**  
 가운데 실선이 두 클래스를 나누는 결정 경계.  

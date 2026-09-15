@@ -5,7 +5,7 @@ render_with_liquid: false
 categories: ["데이터 분석", "데이터 수집"]
 ---
 
-![](/assets/images/tistory/289/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/289/img.png)
 
 **공통점**
 

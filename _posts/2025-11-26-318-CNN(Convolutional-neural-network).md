@@ -20,7 +20,7 @@ CNN은 인간의 시각 시스템과 유사하게 동작하도록 설계된 인�
 
 CNN은 크게 특징 추출(Feature Extraction) 부분과 분류(Classification) 부분으로 나뉩니다. 특징 추출 부분은 여러 개의 계층(Layer)으로 구성됩니다.
 
-![](/assets/images/tistory/318/img.jpg)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/318/img.jpg)
 
 Shutterstock
 
@@ -77,7 +77,7 @@ CNN은 다른 신경망과 마찬가지로 **역전파(Backpropagation)** 알고
 * **연산**: 필터가 입력 이미지 위를 일정한 **스트라이드(Stride)** 간격으로 이동하면서, 필터가 겹치는 이미지 영역과 필터의 원소를 **원소별로 곱한 후 모두 더하는** 연산을 수행합니다.
 * **출력**: 이 연산의 결과로 \*\*특징 맵(Feature Map, 또는 활성화 맵)\*\*이라는 새로운 행렬이 생성됩니다. 특징 맵의 각 뉴런은 입력 이미지의 특정 영역에서 필터가 감지한 특징의 강도를 나타냅니다.
 
-![](/assets/images/tistory/318/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/318/img.png)
 
 ## 2. 패딩 (Padding)
 

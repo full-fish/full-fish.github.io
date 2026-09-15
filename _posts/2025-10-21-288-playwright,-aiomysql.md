@@ -52,13 +52,13 @@ await page.wait_for_selector(selector) # 특정 요소가 페이지 안에 나�
 
 **locate**
 
-![](/assets/images/tistory/288/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/288/img.png)
 
-![](/assets/images/tistory/288/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/288/img_1.png)
 
-![](/assets/images/tistory/288/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/288/img_2.png)
 
-![](/assets/images/tistory/288/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/288/img_3.png)
 
 ```javascript
 page.locator(selector)
@@ -118,7 +118,7 @@ await asyncio.gather(*tasks, return_exceptions=True)
 #예외가 발생해도 다른 작업은 계속 진행. 결과 리스트에 정상 결과는 값으로, 오류는 예외 객체로 들어감
 ```
 
-![](/assets/images/tistory/288/img_4.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/288/img_4.png)
 
 ```python
 await aiomysql.connect() → MySQL 서버에 연결 (비동기)

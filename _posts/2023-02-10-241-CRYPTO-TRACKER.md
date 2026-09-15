@@ -217,7 +217,7 @@ const GlobalStyle = createGlobalStyle`여기에 붙여 넣음`
 
 코인 좀 이쁘게
 
-![](/assets/images/tistory/241/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/241/img.png)
 
 
 코인 이쁘게

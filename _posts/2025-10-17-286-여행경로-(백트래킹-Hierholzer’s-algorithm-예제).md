@@ -57,4 +57,4 @@ def solution(tickets):
     return result[::-1]
 ```
 
-![](/assets/images/tistory/286/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/286/img.png)

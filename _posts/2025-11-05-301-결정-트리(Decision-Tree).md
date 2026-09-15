@@ -44,9 +44,9 @@ None          전체 특성 다 사용            feature   10개면 10개 전�
 실수 (float)   비율로 지정                 0.5면 절반만 선택
 ```
 
-![](/assets/images/tistory/301/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/301/img.png)
 
-![](/assets/images/tistory/301/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/301/img_1.png)
 
 **예시**
 
@@ -89,8 +89,8 @@ for name, imp in zip(X.columns, dt.feature_importances_):
     print(f"{name:20s} {imp:.3f}")
 ```
 
-![](/assets/images/tistory/301/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/301/img_2.png)
 
 **트리는 스케일링을 할 필요가 없음**
 
-![](/assets/images/tistory/301/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/301/img_3.png)

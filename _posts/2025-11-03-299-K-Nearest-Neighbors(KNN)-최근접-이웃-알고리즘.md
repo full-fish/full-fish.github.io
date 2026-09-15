@@ -89,7 +89,7 @@ scaler = StandardScaler().fit(x_train)
 x_train_scaled = scaler.transform(x_train)
 ```
 
-![](/assets/images/tistory/299/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/299/img.png)
 
 **Min-Max 스케일링 (0~1 스케일)**
 
@@ -117,7 +117,7 @@ x_train_scaled = scaler.transform(x_train)
 x_test_scaled = scaler.transform(x_test)  # 훈련 기준으로 변환
 ```
 
-![](/assets/images/tistory/299/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/299/img_1.png)
 
 ```python
 # fit은 먼저하는게 좋음
@@ -146,14 +146,14 @@ x_train_scaled = scaler.transform(x_train)
 
 분류 모델이 어디서 맞고 어디서 틀렸는지 행렬로 보여줌
 
-![](/assets/images/tistory/299/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/299/img_2.png)
 
 TP (True Positive): 실제로 True인데 True이라고 맞게 예측  
 TN (True Negative): 실제로 False인데 False라고 맞게 예측  
 FP (False Positive): 실제로는 False인데 True이라고 잘못 예측 → “거짓 양성”, 과잉탐지  
 FN (False Negative): 실제로는 True인데 False이라고 잘못 예측 → “거짓 음성”, 놓침
 
-![](/assets/images/tistory/299/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/299/img_3.png)
 
 ```python
 # 입력: 정답 레이블(y_true), 모델이 예측한 레이블(y_pred)
@@ -178,7 +178,7 @@ F1-score
 • Precision과 Recall이 얼마나 균형이 있는가를 평가  
 • 이 클래스에 대해 전반적으로 맞췄는가?
 
-![](/assets/images/tistory/299/img_4.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/299/img_4.png)
 
 **classification\_report(y\_true, y\_pred) 결과 정리**
 

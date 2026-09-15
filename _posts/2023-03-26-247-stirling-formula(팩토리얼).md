@@ -13,7 +13,7 @@ From Wikipedia, the free encyclopedia Approximation for factorials Comparison of
 
 en.wikipedia.org](https://en.wikipedia.org/wiki/Stirling%27s_approximation)
 
-![](/assets/images/tistory/247/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/247/img.png)
 
 팩토리얼은 stirling formula에 근사함
 

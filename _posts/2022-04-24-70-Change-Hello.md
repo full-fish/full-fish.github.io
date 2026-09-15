@@ -8,7 +8,7 @@ tags: ["nomadcoder"]
 
 마우스 위치, 클릭, 화면사이즈변경에 따라 달라지는 글씨
 
-![](/assets/images/tistory/70/화면_기록_2022-04-24_오후_4_44_37_AdobeCreativeCloudExpress.gif)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/70/화면_기록_2022-04-24_오후_4_44_37_AdobeCreativeCloudExpress.gif)
 
 
 시연영상

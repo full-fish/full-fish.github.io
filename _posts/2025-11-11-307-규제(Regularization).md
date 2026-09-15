@@ -9,11 +9,11 @@ categories: ["데이터 분석", "머신러닝, 딥러닝"]
 
 큰 계수에 패널티 줘서 모델 복잡도 낮춤
 
-![](/assets/images/tistory/307/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/307/img.png)
 
 **Lasso(L1)**
 
-![](/assets/images/tistory/307/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/307/img_1.png)
 
 
 MSE: 예측 오차(평균제곱오차) λ(람다): 규제 강도. 클수록 규제가 세짐 ❘βⱼ❘: 각 회귀계수의 절댓값
@@ -38,7 +38,7 @@ MSE를 최소화 (예측 잘하게)
 
 **Ridge(L2)**
 
-![](/assets/images/tistory/307/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/307/img_2.png)
 
 
 MSE : 예측 오차 λ(람다) : 규제 강도 (크면 규제가 세짐) β² 합 : 회귀계수 크기에 대한 패널티
@@ -55,16 +55,16 @@ MSE : 예측 오차 λ(람다) : 규제 강도 (크면 규제가 세짐) β² �
 
 단점: 불필요한 변수 제거 못함
 
-![](/assets/images/tistory/307/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/307/img_3.png)
 
 **Elastic Net (L1 + L2 혼합)**
 
-![](/assets/images/tistory/307/img_4.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/307/img_4.png)
 
 변수 선택 가능, 변수 간 상관관계를 반영한 정규화  
 피처 수가 많고, 상관 피처 묶음이 있으며, 일부는 0이길 원할 때.
 
-![](/assets/images/tistory/307/img_5.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/307/img_5.png)
 
 **위의 3가지 성능 비교 예제**
 

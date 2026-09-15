@@ -21,9 +21,9 @@ RNN은 입력과 출력을 순서대로 처리하며, 이전 단계의 계산 �
 
 RNN은 각 시점(Time Step, $t$)에서 동일한 함수와 가중치 집합($W$)을 사용하여 계산을 반복합니다
 
-![](/assets/images/tistory/319/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/319/img.png)
 
-![](/assets/images/tistory/319/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/319/img_1.png)
 
 ## 4. RNN의 주요 한계점
 
@@ -36,6 +36,6 @@ RNN은 각 시점(Time Step, $t$)에서 동일한 함수와 가중치 집합($W$
 
 **LSTM**
 
-![](/assets/images/tistory/319/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/319/img_2.png)
 
-![](/assets/images/tistory/319/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/319/img_3.png)

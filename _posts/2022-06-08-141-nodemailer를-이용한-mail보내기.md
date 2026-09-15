@@ -55,7 +55,7 @@ async function main() {
 
 그 이유는
 
-![](/assets/images/tistory/141/스크린샷 2022-06-06 오후 4.36.10.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/141/스크린샷 2022-06-06 오후 4.36.10.png)
 
 불과 10일도 안지난 최근에
 

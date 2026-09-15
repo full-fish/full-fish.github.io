@@ -17,7 +17,7 @@ categories: ["데이터 분석", "머신러닝, 딥러닝"]
 계산에 의해 얻어진 이론 값과 실제 관측이나 측정에 의해 얻어진 값의 차이  
 오차(Error)–모집단, 잔차(Residual)–표본집단
 
-![](/assets/images/tistory/306/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/306/img.png)
 
 단순 선형 회귀  
 하나의 특성(Feature, 독립변수)를 가지고 Target을 예측하기 위한 선형 함수를 찾는 것  
@@ -43,7 +43,7 @@ categories: ["데이터 분석", "머신러닝, 딥러닝"]
 
 원본 데이터도 산점도가 선형성을 보여야 하고 잔차도 중앙값에서 비슷하게 떨어져 있어야한다
 
-![](/assets/images/tistory/306/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/306/img_1.png)
 
 위 이미지의 3번 처럼 잔차에서 특징이 발견되면 안된다
 
@@ -261,7 +261,7 @@ Shapiro-Wilk 검정을 실시 했을 시
 • 대립가설 : 잔차가 정규분포가 아니다  
 • P-value > 0.05(유의수준) : 귀무가설을 기각할 수 없다 반대이면 기각
 
-![](/assets/images/tistory/306/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/306/img_2.png)
 
 실습
 

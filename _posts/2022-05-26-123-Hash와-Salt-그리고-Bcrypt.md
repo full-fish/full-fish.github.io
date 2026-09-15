@@ -26,7 +26,7 @@ brute force : 무차별 대입 공격
 
 **hash란**
 
-![](/assets/images/tistory/123/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/123/img.png)
 
 일반적으로 자료구조에서 검색을 할때는 선형적으로 검색하므로 시간복잡도가 **O(n)**이다.
 
@@ -64,7 +64,7 @@ st-lab님 말씀 : "해싱 알고리즘 자체가 비가역성 성질을 갖고�
 
 1. Separate Chaining (분리 연결법)
 
-![](/assets/images/tistory/123/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/123/img_1.png)
 
 충돌이 일어날 시 추가 메모리를 사용해서 다음 데이터의 주소를 저장함
 
@@ -131,7 +131,7 @@ brute force로 공격을 하여 해시충돌을 찾으려고 할때 모든 수�
 
 hashing한 digest를 다시 hashing하는것을 반복함
 
-![](/assets/images/tistory/123/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/123/img_2.png)
 
 ```javascript
 '1234'
@@ -158,7 +158,7 @@ Key Stretching을 적용시켰다고 하더라도 하나의 데이터를 n번 ha
 
 그러므로 salt를 첨가한다.
 
-![](/assets/images/tistory/123/img_3.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/123/img_3.png)
 
 데이터에 임의의 문자열을 추가시키고 hashing하는 방법으로 레인보우 테이블의 생성을 막을 수 있다.
 
@@ -188,7 +188,7 @@ Bcrypt는 key setup phase라는 막대한 전처리 요구로 느리게 만든 B
 
 Key Stretching과 salt를 혼합한 방법을 사용한다.
 
-![](/assets/images/tistory/123/img_4.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/123/img_4.png)
 
 ```javascript
 Bcrypt의 구조는

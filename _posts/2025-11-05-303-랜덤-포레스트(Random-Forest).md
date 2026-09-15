@@ -175,7 +175,7 @@ dtype: float64
 트리 전체, 숲 전체의 평균을 내면  
 → RandomForestClassifier.feature\_importances\_ 값이 됨
 
-![](/assets/images/tistory/303/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/303/img.png)
 
 즉, 모든 트리에서 “이 변수가 불순도 줄이는 데 얼마나 기여했나”를 평균낸거
 

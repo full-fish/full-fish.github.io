@@ -6,7 +6,7 @@ categories: ["nomadcoder", "Vanilla JS"]
 tags: ["Nomad"]
 ---
 
-![](/assets/images/tistory/97/화면_기록_2022-05-05_오후_7_11_28_AdobeCreativeCloudExpress.gif)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/97/화면_기록_2022-05-05_오후_7_11_28_AdobeCreativeCloudExpress.gif)
 
 
 

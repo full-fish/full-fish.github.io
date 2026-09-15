@@ -19,7 +19,7 @@ const {register} = useForm()
 console.log(register('toDo'))
 ```
 
-![](/assets/images/tistory/245/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/245/img.png)
 
 
 onBlur는 input바깥을 클릭했을 때
@@ -59,7 +59,7 @@ function ToDoList() {
 
 watch로 모든 값을 볼 수 있음
 
-![](/assets/images/tistory/245/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/245/img_1.png)
 
 **handleSubmit** : validation담당함 event preventDefalut도 함. 해야 하는 모든 일을 끝마치고 데이터가 유효하면 onValid 함수 호출
 

@@ -39,7 +39,7 @@ api.slack.com](https://api.slack.com/apps)
 
 App Name을 지정해주고 방금 생성한 워크스페이스와 연동시켜준다
 
-![](/assets/images/tistory/78/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/78/img.png)
 
 그리고 Bots을 선택한다
 

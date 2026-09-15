@@ -201,11 +201,11 @@ lda = LatentDirichletAllocation(
 )
 ```
 
-![](/assets/images/tistory/317/img.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/317/img.png)
 
-![](/assets/images/tistory/317/img_1.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/317/img_1.png)
 
-![](/assets/images/tistory/317/img_2.png)
+![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/317/img_2.png)
 
 ```python
 import numpy as np # 배열 및 수학 연산을 위한 라이브러리 (결과 출력에 사용)
