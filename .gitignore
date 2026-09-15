@@ -2,3 +2,12 @@
 
 # 이미지는 Cloudflare R2에서 호스팅 (scripts/upload_images_r2.py)
 assets/images/tistory/
+
+# macOS metadata
+.DS_Store
+
+# local Ruby bundle cache
+vendor/bundle/
+
+# local tistory backup source
+fullfish-1-1/
