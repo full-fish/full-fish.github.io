@@ -41,3 +41,29 @@ layout: archive
     {% endif %}
   {% endfor %}
 {% endfor %}
+
+<script>
+  (function () {
+    function filterByHash() {
+      var slug = (window.location.hash || '').replace('#', '').toLowerCase();
+      var sections = document.querySelectorAll('.taxonomy__section');
+      var index = document.querySelector('.taxonomy__index');
+
+      if (!slug) {
+        if (index) index.style.display = '';
+        sections.forEach(function (section) {
+          section.style.display = '';
+        });
+        return;
+      }
+
+      if (index) index.style.display = 'none';
+      sections.forEach(function (section) {
+        section.style.display = section.id === slug ? '' : 'none';
+      });
+    }
+
+    window.addEventListener('hashchange', filterByHash);
+    filterByHash();
+  })();
+</script>

@@ -9,6 +9,7 @@
 {% else %}
   {% assign title = post.title %}
 {% endif %}
+{% assign post_categories = post.categories | default: empty %}
 
 <div class="{{ include.type | default: 'list' }}__item">
   <article class="archive__item" itemscope itemtype="https://schema.org/CreativeWork">
@@ -22,6 +23,15 @@
         <a href="{{ post.link }}">{{ title }}</a> <a href="{{ post.url | relative_url }}" rel="permalink"><i class="fas fa-link" aria-hidden="true" title="permalink"></i><span class="sr-only">Permalink</span></a>
       {% else %}
         <a href="{{ post.url | relative_url }}" rel="permalink">{{ title }}</a>
+      {% endif %}
+      {% if post_categories and post_categories.size > 0 %}
+        <small>
+          [
+          {% for cat in post_categories %}
+            {{ cat }}{% unless forloop.last %} / {% endunless %}
+          {% endfor %}
+          ]
+        </small>
       {% endif %}
     </h2>
     {% include page__meta.html type=include.type %}

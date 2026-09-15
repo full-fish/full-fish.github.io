@@ -15,53 +15,54 @@
   endif %} {% if page.show_category_sidebar %}
   <nav class="nav__list">
     <h3 class="nav__title" style="padding-left: 0;">카테고리</h3>
-    {% if site.data.category_tree and site.data.category_tree.categories and site.data.category_tree.categories.size > 0 %}
-      {% include category-tree-nav.html nodes=site.data.category_tree.categories %}
-    {% else %}
-      <ul class="nav__items">
-        {% assign seen_parents = '|' %} {% for post in site.posts %} {% if
-        post.categories and post.categories.size > 0 %} {% assign parent =
-        post.categories[0] %} {% capture parent_token %}|{{ parent }}|{%
-        endcapture %} {% unless seen_parents contains parent_token %} {% assign
-        parent_count = 0 %} {% for parent_post in site.posts %} {% if
-        parent_post.categories and parent_post.categories.size > 0 and
-        parent_post.categories[0] == parent %} {% assign parent_count =
-        parent_count | plus: 1 %} {% endif %} {% endfor %} {% assign parent_id =
-        parent | slugify | downcase %}
-        <li>
-          <a href="{{ '/categories/' | relative_url }}#{{ parent_id }}">
-            <span class="nav__sub-title">{{ parent }} ({{ parent_count }})</span>
-          </a>
+    {% if site.data.category_tree and site.data.category_tree.categories and
+    site.data.category_tree.categories.size > 0 %} {% include
+    category-tree-nav.html nodes=site.data.category_tree.categories %} {% else
+    %}
+    <ul class="nav__items">
+      {% assign seen_parents = '|' %} {% for post in site.posts %} {% if
+      post.categories and post.categories.size > 0 %} {% assign parent =
+      post.categories[0] %} {% capture parent_token %}|{{ parent }}|{%
+      endcapture %} {% unless seen_parents contains parent_token %} {% assign
+      parent_count = 0 %} {% for parent_post in site.posts %} {% if
+      parent_post.categories and parent_post.categories.size > 0 and
+      parent_post.categories[0] == parent %} {% assign parent_count =
+      parent_count | plus: 1 %} {% endif %} {% endfor %} {% assign parent_id =
+      parent | slugify | downcase %}
+      <li>
+        <a href="{{ '/categories/' | relative_url }}#{{ parent_id }}">
+          <span class="nav__sub-title">{{ parent }} ({{ parent_count }})</span>
+        </a>
 
-          {% assign seen_children = '|' %} {% assign has_children = false %} {%
-          for child_post in site.posts %} {% if child_post.categories and
-          child_post.categories.size > 1 and child_post.categories[0] == parent %}
-          {% assign child = child_post.categories[1] %} {% capture child_token
-          %}|{{ child }}|{% endcapture %} {% unless seen_children contains
-          child_token %} {% if has_children == false %} {% assign has_children =
-          true %}
-          <ul>
-            {% endif %} {% assign child_count = 0 %} {% for child_count_post in
-            site.posts %} {% if child_count_post.categories and
-            child_count_post.categories.size > 1 and
-            child_count_post.categories[0] == parent and
-            child_count_post.categories[1] == child %} {% assign child_count =
-            child_count | plus: 1 %} {% endif %} {% endfor %} {% assign child_id =
-            child | slugify | downcase %}
-            <li>
-              <a href="{{ '/categories/' | relative_url }}#{{ child_id }}"
-                >{{ child }} ({{ child_count }})</a
-              >
-            </li>
-            {% capture seen_children %}{{ seen_children }}{{ child_token }}{%
-            endcapture %} {% endunless %} {% endif %} {% endfor %} {% if
-            has_children %}
-          </ul>
-          {% endif %}
-        </li>
-        {% capture seen_parents %}{{ seen_parents }}{{ parent_token }}{%
-        endcapture %} {% endunless %} {% endif %} {% endfor %}
-      </ul>
+        {% assign seen_children = '|' %} {% assign has_children = false %} {%
+        for child_post in site.posts %} {% if child_post.categories and
+        child_post.categories.size > 1 and child_post.categories[0] == parent %}
+        {% assign child = child_post.categories[1] %} {% capture child_token
+        %}|{{ child }}|{% endcapture %} {% unless seen_children contains
+        child_token %} {% if has_children == false %} {% assign has_children =
+        true %}
+        <ul>
+          {% endif %} {% assign child_count = 0 %} {% for child_count_post in
+          site.posts %} {% if child_count_post.categories and
+          child_count_post.categories.size > 1 and
+          child_count_post.categories[0] == parent and
+          child_count_post.categories[1] == child %} {% assign child_count =
+          child_count | plus: 1 %} {% endif %} {% endfor %} {% assign child_id =
+          child | slugify | downcase %}
+          <li>
+            <a href="{{ '/categories/' | relative_url }}#{{ child_id }}"
+              >{{ child }} ({{ child_count }})</a
+            >
+          </li>
+          {% capture seen_children %}{{ seen_children }}{{ child_token }}{%
+          endcapture %} {% endunless %} {% endif %} {% endfor %} {% if
+          has_children %}
+        </ul>
+        {% endif %}
+      </li>
+      {% capture seen_parents %}{{ seen_parents }}{{ parent_token }}{%
+      endcapture %} {% endunless %} {% endif %} {% endfor %}
+    </ul>
     {% endif %}
   </nav>
   {% endif %}
