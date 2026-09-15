@@ -45,38 +45,82 @@ category[1].size == i %}
       return raw.toLowerCase();
     }
 
-    function filterByHash() {
-      var slug = normalizeHash(window.location.hash || '');
-      var sections = document.querySelectorAll('.taxonomy__section');
+    function showAllSections(index, sections) {
+      if (index) index.style.display = '';
+      sections.forEach(function (section) {
+        section.style.display = '';
+      });
+      return null;
+    }
+
+    function filterByHash(hashValue) {
+      var slug = normalizeHash(typeof hashValue === 'string' ? hashValue : window.location.hash || '');
+      var sections = Array.prototype.slice.call(document.querySelectorAll('.taxonomy__section'));
       var index = document.querySelector('.taxonomy__index');
-      var matched = false;
+      var matchedSection = null;
 
       if (!slug) {
-        if (index) index.style.display = '';
-        sections.forEach(function (section) {
-          section.style.display = '';
-        });
-        return;
+        return showAllSections(index, sections);
       }
 
       if (index) index.style.display = 'none';
       sections.forEach(function (section) {
         var visible = section.id === slug;
-        if (visible) matched = true;
+        if (visible) {
+          matchedSection = section;
+        }
         section.style.display = visible ? '' : 'none';
       });
 
-      // 잘못된 해시이거나 slug 불일치면 빈 화면 대신 전체 목록 복구
-      if (!matched) {
-        if (index) index.style.display = '';
-        sections.forEach(function (section) {
-          section.style.display = '';
-        });
+      if (!matchedSection) {
+        return showAllSections(index, sections);
+      }
+
+      return matchedSection;
+    }
+
+    function isCategoryUrl(url) {
+      var currentPath = window.location.pathname.replace(/\/+$/, '');
+      var targetPath = url.pathname.replace(/\/+$/, '');
+      return targetPath === currentPath && targetPath.indexOf('/categories') !== -1 && url.hash;
+    }
+
+    function handleCategoryClick(event) {
+      var link = event.target.closest('a');
+      if (!link) {
+        return;
+      }
+
+      var targetUrl;
+      try {
+        targetUrl = new URL(link.href, window.location.origin);
+      } catch (_err) {
+        return;
+      }
+
+      if (!isCategoryUrl(targetUrl)) {
+        return;
+      }
+
+      event.preventDefault();
+      var matchedSection = filterByHash(targetUrl.hash);
+      if (window.location.hash !== targetUrl.hash) {
+        history.pushState(null, '', targetUrl.hash);
+      } else {
+        history.replaceState(null, '', targetUrl.hash);
+      }
+      if (matchedSection) {
+        matchedSection.scrollIntoView({ block: 'start' });
       }
     }
 
-    window.addEventListener('hashchange', filterByHash);
-    window.addEventListener('DOMContentLoaded', filterByHash);
-    filterByHash();
+    window.addEventListener('hashchange', function () {
+      filterByHash(window.location.hash || '');
+    });
+    window.addEventListener('DOMContentLoaded', function () {
+      filterByHash(window.location.hash || '');
+      document.addEventListener('click', handleCategoryClick);
+    });
+    filterByHash(window.location.hash || '');
   })();
 </script>

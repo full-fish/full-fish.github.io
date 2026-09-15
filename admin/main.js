@@ -7,7 +7,10 @@
     branch: "main",
     fileSha: "",
     tree: [],
+    originalTree: [],
     me: null,
+    nextNodeId: 1,
+    postCategoryIndex: null,
   };
 
   const el = {
@@ -24,6 +27,11 @@
     saveBtn: document.getElementById("btn-save"),
     saveStatus: document.getElementById("save-status"),
     commitMsg: document.getElementById("commit-msg"),
+    deleteModal: document.getElementById("delete-modal"),
+    deleteModalMessage: document.getElementById("delete-modal-message"),
+    deleteConfirmInput: document.getElementById("delete-confirm-input"),
+    deleteCancel: document.getElementById("delete-cancel"),
+    deleteConfirm: document.getElementById("delete-confirm"),
   };
 
   function setStatus(target, text, ok) {
@@ -85,9 +93,311 @@
           return null;
         }
         const children = normalizeTree(node.children || []);
-        return { name, children };
+        return { id: "node-" + state.nextNodeId++, name, children };
       })
       .filter(Boolean);
+  }
+
+  function cloneTree(nodes) {
+    return nodes.map((node) => ({
+      id: node.id,
+      name: node.name,
+      children: cloneTree(node.children || []),
+    }));
+  }
+
+  function collectNodePaths(nodes, parentPath, pathMap) {
+    nodes.forEach((node) => {
+      const nextPath = parentPath.concat(node.name);
+      pathMap[node.id] = nextPath;
+      if (node.children && node.children.length > 0) {
+        collectNodePaths(node.children, nextPath, pathMap);
+      }
+    });
+    return pathMap;
+  }
+
+  function isPrefixPath(prefix, path) {
+    if (prefix.length > path.length) {
+      return false;
+    }
+    for (let i = 0; i < prefix.length; i += 1) {
+      if (prefix[i] !== path[i]) {
+        return false;
+      }
+    }
+    return true;
+  }
+
+  function minimizePaths(paths) {
+    return paths
+      .slice()
+      .sort((a, b) => a.length - b.length)
+      .filter((path, index, list) => {
+        for (let i = 0; i < index; i += 1) {
+          if (isPrefixPath(list[i], path)) {
+            return false;
+          }
+        }
+        return true;
+      });
+  }
+
+  function buildSyncPlan() {
+    const originalPaths = collectNodePaths(state.originalTree, [], {});
+    const currentPaths = collectNodePaths(state.tree, [], {});
+    const changed = [];
+    const deleted = [];
+
+    Object.keys(originalPaths).forEach((id) => {
+      if (!currentPaths[id]) {
+        deleted.push(originalPaths[id]);
+        return;
+      }
+      const fromPath = originalPaths[id];
+      const toPath = currentPaths[id];
+      if (JSON.stringify(fromPath) !== JSON.stringify(toPath)) {
+        changed.push({ id, fromPath, toPath });
+      }
+    });
+
+    const minimalChanged = changed
+      .sort((a, b) => a.fromPath.length - b.fromPath.length)
+      .filter((candidate, index, list) => {
+        for (let i = 0; i < index; i += 1) {
+          if (isPrefixPath(list[i].fromPath, candidate.fromPath)) {
+            return false;
+          }
+        }
+        return true;
+      });
+
+    return {
+      changes: minimalChanged,
+      deletions: minimizePaths(deleted),
+    };
+  }
+
+  function parseFrontMatter(content) {
+    const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+    if (!match) {
+      return null;
+    }
+    const data = jsyaml.load(match[1]) || {};
+    return { data, body: match[2] || "" };
+  }
+
+  function stringifyFrontMatter(data, body) {
+    const yamlText = jsyaml.dump(data, { noRefs: true, lineWidth: -1 }).trim();
+    return `---\n${yamlText}\n---\n${body}`;
+  }
+
+  function normalizeCategories(categories) {
+    if (!categories) {
+      return [];
+    }
+    if (Array.isArray(categories)) {
+      return categories.map((item) => String(item));
+    }
+    return [String(categories)];
+  }
+
+  async function loadPostEntries() {
+    const cfg = state.config;
+    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
+    const entries = await gh(`/repos${repo}/contents/${encodeURIComponent("_posts")}?ref=${encodeURIComponent(state.branch)}`);
+    return entries.filter((entry) => entry.type === "file" && entry.name.endsWith(".md"));
+  }
+
+  async function ensurePostCategoryIndex() {
+    if (state.postCategoryIndex) {
+      return state.postCategoryIndex;
+    }
+
+    const cfg = state.config;
+    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
+    const entries = await loadPostEntries();
+    const index = [];
+
+    for (const entry of entries) {
+      const data = await gh(`/repos${repo}/contents/${encodeURIComponent(entry.path)}?ref=${encodeURIComponent(state.branch)}`);
+      const content = decodeBase64(data.content);
+      const parsed = parseFrontMatter(content);
+      if (!parsed) {
+        continue;
+      }
+      const categories = normalizeCategories(parsed.data.categories);
+      if (categories.length === 0) {
+        continue;
+      }
+      index.push({ path: entry.path, categories });
+    }
+
+    state.postCategoryIndex = index;
+    return index;
+  }
+
+  function countPostsForPath(postIndex, categoryPath) {
+    return postIndex.filter((entry) => isPrefixPath(categoryPath, entry.categories)).length;
+  }
+
+  function getOriginalPathMap() {
+    return collectNodePaths(state.originalTree, [], {});
+  }
+
+  function getCurrentPathMap() {
+    return collectNodePaths(state.tree, [], {});
+  }
+
+  function openDeleteModal(categoryName, postCount) {
+    return new Promise((resolve) => {
+      var done = false;
+
+      function cleanup(result) {
+        if (done) {
+          return;
+        }
+        done = true;
+        el.deleteModal.classList.remove("is-open");
+        el.deleteModal.setAttribute("aria-hidden", "true");
+        el.deleteConfirmInput.value = "";
+        el.deleteConfirm.disabled = true;
+        el.deleteConfirmInput.removeEventListener("input", onInput);
+        el.deleteCancel.removeEventListener("click", onCancel);
+        el.deleteConfirm.removeEventListener("click", onConfirm);
+        el.deleteModal.removeEventListener("click", onOverlayClick);
+        document.removeEventListener("keydown", onKeydown);
+        resolve(result);
+      }
+
+      function onInput() {
+        el.deleteConfirm.disabled = el.deleteConfirmInput.value.trim() !== "확인";
+      }
+
+      function onCancel() {
+        cleanup(false);
+      }
+
+      function onConfirm() {
+        if (el.deleteConfirmInput.value.trim() !== "확인") {
+          return;
+        }
+        cleanup(true);
+      }
+
+      function onOverlayClick(event) {
+        if (event.target === el.deleteModal) {
+          cleanup(false);
+        }
+      }
+
+      function onKeydown(event) {
+        if (event.key === "Escape") {
+          cleanup(false);
+        }
+      }
+
+      el.deleteModalMessage.innerHTML = `<strong>${categoryName}</strong> 카테고리를 삭제하면 연결된 글 <strong>${postCount}개</strong>도 함께 삭제됩니다.`;
+      el.deleteModal.classList.add("is-open");
+      el.deleteModal.setAttribute("aria-hidden", "false");
+      el.deleteConfirmInput.value = "";
+      el.deleteConfirm.disabled = true;
+      el.deleteConfirmInput.addEventListener("input", onInput);
+      el.deleteCancel.addEventListener("click", onCancel);
+      el.deleteConfirm.addEventListener("click", onConfirm);
+      el.deleteModal.addEventListener("click", onOverlayClick);
+      document.addEventListener("keydown", onKeydown);
+      el.deleteConfirmInput.focus();
+    });
+  }
+
+  async function buildPostMutations(plan) {
+    if (plan.changes.length === 0 && plan.deletions.length === 0) {
+      return [];
+    }
+
+    const cfg = state.config;
+    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
+    const entries = await loadPostEntries();
+    const mutations = [];
+
+    for (const entry of entries) {
+      const data = await gh(`/repos${repo}/contents/${encodeURIComponent(entry.path)}?ref=${encodeURIComponent(state.branch)}`);
+      const content = decodeBase64(data.content);
+      const parsed = parseFrontMatter(content);
+      if (!parsed) {
+        continue;
+      }
+
+      const categories = normalizeCategories(parsed.data.categories);
+      if (categories.length === 0) {
+        continue;
+      }
+
+      const deleteMatch = plan.deletions.find((path) => isPrefixPath(path, categories));
+      if (deleteMatch) {
+        mutations.push({ type: "delete", path: entry.path, sha: data.sha, categories });
+        continue;
+      }
+
+      const changeMatch = plan.changes.find((change) => isPrefixPath(change.fromPath, categories));
+      if (!changeMatch) {
+        continue;
+      }
+
+      const nextCategories = changeMatch.toPath.concat(categories.slice(changeMatch.fromPath.length));
+      if (JSON.stringify(nextCategories) === JSON.stringify(categories)) {
+        continue;
+      }
+
+      parsed.data.categories = nextCategories;
+      mutations.push({
+        type: "update",
+        path: entry.path,
+        sha: data.sha,
+        content: stringifyFrontMatter(parsed.data, parsed.body),
+        before: categories,
+        after: nextCategories,
+      });
+    }
+
+    return mutations;
+  }
+
+  async function applyPostMutations(mutations, message) {
+    if (mutations.length === 0) {
+      return;
+    }
+
+    const cfg = state.config;
+    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
+    for (let i = 0; i < mutations.length; i += 1) {
+      const mutation = mutations[i];
+      setStatus(el.saveStatus, `글 동기화 중 ${i + 1}/${mutations.length}`, true);
+      if (mutation.type === "delete") {
+        await gh(`/repos${repo}/contents/${encodeURIComponent(mutation.path)}`, {
+          method: "DELETE",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            message: `${message} (delete posts in removed category)`,
+            sha: mutation.sha,
+            branch: state.branch,
+          }),
+        });
+        continue;
+      }
+
+      await gh(`/repos${repo}/contents/${encodeURIComponent(mutation.path)}`, {
+        method: "PUT",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          message: `${message} (sync post categories)`,
+          content: encodeBase64Unicode(mutation.content),
+          sha: mutation.sha,
+          branch: state.branch,
+        }),
+      });
+    }
   }
 
   function getByPath(path) {
@@ -130,11 +440,24 @@
     render();
   }
 
-  function removeNode(path) {
+  async function removeNode(path) {
     const found = getByPath(path);
     if (!found) {
       return;
     }
+
+    const originalPathMap = getOriginalPathMap();
+    const currentPathMap = getCurrentPathMap();
+    const currentPath = currentPathMap[found.node.id] || [];
+    const persistedPath = originalPathMap[found.node.id] || currentPath;
+    const postIndex = await ensurePostCategoryIndex();
+    const postCount = countPostsForPath(postIndex, persistedPath);
+    const confirmed = await openDeleteModal(found.node.name, postCount);
+
+    if (!confirmed) {
+      return;
+    }
+
     found.list.splice(found.index, 1);
     render();
   }
@@ -269,8 +592,15 @@
   }
 
   function renderPreview() {
-    const yaml = jsyaml.dump({ categories: state.tree }, { noRefs: true, lineWidth: -1 }).trim() + "\n";
+    const yaml = jsyaml.dump({ categories: state.tree.map(stripNodeIds) }, { noRefs: true, lineWidth: -1 }).trim() + "\n";
     el.yamlPreview.value = yaml;
+  }
+
+  function stripNodeIds(node) {
+    return {
+      name: node.name,
+      children: (node.children || []).map(stripNodeIds),
+    };
   }
 
   function render() {
@@ -290,7 +620,10 @@
     state.fileSha = data.sha;
     const text = decodeBase64(data.content);
     const parsed = jsyaml.load(text) || {};
+    state.nextNodeId = 1;
+    state.postCategoryIndex = null;
     state.tree = normalizeTree(parsed.categories || []);
+    state.originalTree = cloneTree(state.tree);
     render();
   }
 
@@ -322,11 +655,17 @@
 
   async function save() {
     try {
-      const yamlText = jsyaml.dump({ categories: state.tree }, { noRefs: true, lineWidth: -1 }).trim() + "\n";
+      el.saveBtn.disabled = true;
+      const plan = buildSyncPlan();
+      const mutations = await buildPostMutations(plan);
+      const yamlText = jsyaml.dump({ categories: state.tree.map(stripNodeIds) }, { noRefs: true, lineWidth: -1 }).trim() + "\n";
       const cfg = state.config;
       const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
       const path = encodeURIComponent(cfg.categoryTreePath);
       const message = (el.commitMsg.value || "chore: update category tree from admin").trim();
+
+      await applyPostMutations(mutations, message);
+
       const payload = {
         message,
         content: encodeBase64Unicode(yamlText),
@@ -341,14 +680,18 @@
       });
 
       state.fileSha = res.content.sha;
+      state.originalTree = cloneTree(state.tree);
+      state.postCategoryIndex = null;
       setStatus(el.saveStatus, "저장 완료", true);
     } catch (err) {
       setStatus(el.saveStatus, err.message, false);
+    } finally {
+      el.saveBtn.disabled = false;
     }
   }
 
   function exportJson() {
-    const blob = new Blob([JSON.stringify({ categories: state.tree }, null, 2)], { type: "application/json" });
+    const blob = new Blob([JSON.stringify({ categories: state.tree.map(stripNodeIds) }, null, 2)], { type: "application/json" });
     const url = URL.createObjectURL(blob);
     const a = document.createElement("a");
     a.href = url;
