@@ -11,3 +11,12 @@ vendor/bundle/
 
 # local tistory backup source
 fullfish-1-1/
+
+# Jekyll caches and generated output
+.jekyll-cache/
+.sass-cache/
+_site/
+.jekyll-metadata
+
+# local bundler metadata
+.bundle/
