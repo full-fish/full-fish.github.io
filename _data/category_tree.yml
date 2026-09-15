@@ -1,7 +1,7 @@
 categories:
   - name: Project
     children:
-      - name: arduino1
+      - name: arduino
         children: []
       - name: codestates-final-project
         children: []
