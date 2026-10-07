@@ -1,14 +1,16 @@
 {% if page.previous or page.next %}
-  <nav class="pagination">
-    {% if page.previous %}
-      <a href="{{ page.previous.url | relative_url }}" class="pagination--pager" title="{{ page.previous.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
-    {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_previous | default: "Previous" }}</a>
-    {% endif %}
-    {% if page.next %}
-      <a href="{{ page.next.url | relative_url }}" class="pagination--pager" title="{{ page.next.title | markdownify | strip_html }}">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
-    {% else %}
-      <a href="#" class="pagination--pager disabled">{{ site.data.ui-text[site.locale].pagination_next | default: "Next" }}</a>
-    {% endif %}
-  </nav>
+<nav class="post-nav" aria-label="이전 글과 다음 글">
+  {% if page.previous %}
+  <a class="post-nav__link" href="{{ page.previous.url | relative_url }}" rel="prev">
+    <span class="post-nav__label">← 이전 글</span>
+    <span class="post-nav__title">{{ page.previous.title | escape }}</span>
+  </a>
+  {% else %}<span></span>{% endif %}
+  {% if page.next %}
+  <a class="post-nav__link post-nav__link--next" href="{{ page.next.url | relative_url }}" rel="next">
+    <span class="post-nav__label">다음 글 →</span>
+    <span class="post-nav__title">{{ page.next.title | escape }}</span>
+  </a>
+  {% endif %}
+</nav>
 {% endif %}

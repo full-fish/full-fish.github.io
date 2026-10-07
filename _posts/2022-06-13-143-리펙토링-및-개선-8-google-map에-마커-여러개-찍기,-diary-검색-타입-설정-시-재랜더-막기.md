@@ -152,7 +152,7 @@ function Map({ gps, data }) {
         })
       }`}
         </script>
-        <script src="https://maps.googleapis.com/maps/api/js?key=키값&callback=myMap"></script>
+        <script src="https://maps.googleapis.com/maps/api/js?key=키값&callback=myMap"></script>
       </Helmet>
     </>
   );
@@ -165,7 +165,7 @@ export default Map;
 **문제점**  
 검색 타입이 제목과 내용 두개 있는데
 
-예를 들어 제목을 클릭시 검색 타입 상태에는 제목이 들어간다
+예를 들어 제목을 클릭시 검색 타입 상태에는 제목이 들어간다
 
 여기서 검색해봐도 문제없이 잘 작동하지만
 

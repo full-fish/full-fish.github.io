@@ -128,12 +128,12 @@ X <Compressed Sparse Row sparse matrix of dtype 'int64'
 | stop\_words\_ | 내부에서 제거된 불용어 목록 (제거된 단어가 있을 경우) | {'the', 'is', 'and'} |
 | feature\_names\_out\_ (get\_feature\_names\_out()로 호출) | 인덱스 순서대로 정렬된 단어 리스트 | ['날씨', '오늘', '좋다'] |
 | fixed\_vocabulary\_ | 사용자가 직접 vocabulary 지정 시 True | False |
-| dtype | 단어 빈도 행렬의 데이터 타입 | <class 'numpy.int64'> |
+| dtype | 단어 빈도 행렬의 데이터 타입 | &lt;class 'numpy.int64'> |
 | ngram\_range | n-gram 범위 | (1, 1) (기본값: unigram) |
 | analyzer | 분석 단위 (word / char 등) | 'word' |
 | max\_features | 사용할 최대 단어 개수 (None이면 전체 사용) | None |
 | lowercase | 영문을 소문자로 변환할지 여부 | True |
-| token\_pattern | 토큰 추출 정규식 | '(?u)\\b\\w\\w+\\b' |
+| token\_pattern | 토큰 추출 정규식 | '(?u)\\\\b\\\\w\\\\w+\\\\b' |
 
 **n-gram**
 

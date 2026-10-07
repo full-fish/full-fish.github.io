@@ -1,10 +1,9 @@
 ---
-title: "Blog"
-layout: home
+title: "블로그"
+layout: blog
 permalink: /blog/
 author_profile: true
 show_category_sidebar: true
-entries_layout: list
 ---
 
-티스토리에서 이전한 글들을 포함한 전체 게시글 목록입니다.
+티스토리에서 옮겨 온 글을 포함한 전체 글 목록입니다.

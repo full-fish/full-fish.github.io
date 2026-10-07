@@ -62,7 +62,7 @@ exact삭제
 useHistory -> useNavigate  
 useRoutes
 
-useParams사용시 interface안해줘도 자동으로 타입이 undefiend|string으로 잡힘
+useParams사용시 interface안해줘도 자동으로 타입이 undefiend\|string으로 잡힘
 
 #### **Styles**
 
@@ -253,7 +253,7 @@ const Coin = styled.li`
 </CoinsList>
 ```
 
-<Link>
+&lt;Link>
 
 ```html
 // 공식문서 사용법
@@ -265,7 +265,9 @@ const Coin = styled.li`
     state: {fromDashboard: true }
   }}
 />
-``````javascript
+```
+
+```javascript
 // Coins.tsx
 <Link
    to={{

@@ -24,13 +24,9 @@ tags: ["PROJECT"]
 
 **highlight와 가중치에 대해 내가 쓴 글**
 
-<https://fullfish.tistory.com/105>
+[fuzzy검색의 highlight와 가중치 적용](/blog/105-fuzzy%EA%B2%80%EC%83%89%EC%9D%98-highlight%EC%99%80-%EA%B0%80%EC%A4%91%EC%B9%98-%EC%A0%81%EC%9A%A9/)
 
-[fuzzy검색의 highlight와 가중치 적용
-
-참고 : https://taegon.kim/archives/9919 [JS] 한글도 지원하는 퍼지 문자열 검색 UI 작업을 하다보면 목록을 검색해야 할 때가 많다. 그런데 사람의 기억이라는 게 정확하지 않아서 혹은 전부 입력하기 귀
-
-fullfish.tistory.com](https://fullfish.tistory.com/105)```javascript
+```javascript
 result = document.querySelectorAll('.title');
 console.log(result);
 // 출력
@@ -92,8 +88,4 @@ replace로 초기화해주고 함수에 넣어줬다
 
 **fuzzy검색의 highlight와 가중치 적용을 활용**
 
-[fuzzy검색의 highlight와 가중치 적용
-
-참고 : https://taegon.kim/archives/9919 [JS] 한글도 지원하는 퍼지 문자열 검색 UI 작업을 하다보면 목록을 검색해야 할 때가 많다. 그런데 사람의 기억이라는 게 정확하지 않아서 혹은 전부 입력하기 귀
-
-fullfish.tistory.com](https://fullfish.tistory.com/105?category=1054038)
+[fuzzy검색의 highlight와 가중치 적용](/blog/105-fuzzy%EA%B2%80%EC%83%89%EC%9D%98-highlight%EC%99%80-%EA%B0%80%EC%A4%91%EC%B9%98-%EC%A0%81%EC%9A%A9/)

@@ -1,0 +1,10 @@
+{%- assign p = include.post -%}
+<li class="post-row" data-filter="{{ p.title | downcase | escape }} {{ p.categories | join: ' ' | downcase | escape }} {{ p.tags | join: ' ' | downcase | escape }}">
+  <a class="post-row__title" href="{{ p.url | relative_url }}">{{ p.title | escape }}</a>
+  <span class="post-row__meta">
+    <time datetime="{{ p.date | date_to_xmlschema }}">{{ p.date | date: site.date_format }}</time>
+    {%- if p.categories.size > 0 %}
+    <span aria-hidden="true">·</span> {{ p.categories | join: " › " | escape }}
+    {%- endif %}
+  </span>
+</li>

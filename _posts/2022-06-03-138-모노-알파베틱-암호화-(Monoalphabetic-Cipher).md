@@ -67,8 +67,4 @@ decryptStr :  I! am manseon
 
 **모노 알파베틱 활용**
 
-[리펙토링 및 개선 - 4 / 카이사르, 모노알파베틱 암호화 적용
-
-한것 카이사르 암호화와 모노 알파베틱 암호화를 RSA와 함께 적용했다 (회원가입, 로그인, 비밀번호 변경) 내가 쓴 카이사르와 모노알파베틱 암호화 'bca' 코드화 문자열의 각 문자를 유니코드화 -
-
-fullfish.tistory.com](https://fullfish.tistory.com/139)
+[리펙토링 및 개선 - 4 / 카이사르, 모노알파베틱 암호화 적용](/blog/139-%EB%A6%AC%ED%8E%99%ED%86%A0%EB%A7%81-%EB%B0%8F-%EA%B0%9C%EC%84%A0-5-%EC%B9%B4%EC%9D%B4%EC%82%AC%EB%A5%B4,-%EB%AA%A8%EB%85%B8%EC%95%8C%ED%8C%8C%EB%B2%A0%ED%8B%B1-%EC%95%94%ED%98%B8%ED%99%94-%EC%A0%81%EC%9A%A9/)

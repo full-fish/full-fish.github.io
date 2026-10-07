@@ -35,7 +35,9 @@ soup = BeautifulSoup(html_doc, 'html.parser')
 print("Title:",soup.title.string) 
 print("Heading:", soup.h1.text) 
 print("Link:",soup.a['href'])
-``````python
+```
+
+```python
 # api 크롤링 예제
 # conda install -c conda-forge requests
 

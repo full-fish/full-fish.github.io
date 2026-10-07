@@ -321,7 +321,7 @@ i값이 1증가함에 따라서 걸리는 시간이 2배씩 증가함을 알 수
 
 즉  변수 i는 (반복횟수 : 2^i)임을 알 수 있다
 
-#### **Salt에 대한 고찰**
+#### **Salt에 대한 고찰**
 
 블로그들을 보다보면 반복 할 때마다 salt값이 바뀐다고한다.
 
@@ -449,31 +449,14 @@ hashing시 salt의 cost 숫자가 hashing알고리즘에 영향을 끼치는 이
 
 #### **Bctypt 활용**
 
-[리펙토링 및 개선 - 3 / Bcrypt 적용
-
-Bcrypt에 대해 내가 쓴 글 https://fullfish.tistory.com/123?category=1054038 Hash와 Salt 그리고 Bcrypt 기본 용어 hash : 다양한 길이를 가진 데이터를 고정된 길이의 데이터로 매핑하는것 digest : hash에 의..
-
-fullfish.tistory.com](https://fullfish.tistory.com/125?category=1053678)
+[리펙토링 및 개선 - 3 / Bcrypt 적용](/blog/125-%EB%A6%AC%ED%8E%99%ED%86%A0%EB%A7%81-%EB%B0%8F-%EA%B0%9C%EC%84%A0-3-Bcrypt-%EC%A0%81%EC%9A%A9/)
 
 #### **참고**
 
-[[자료구조] 해시테이블(HashTable)이란?
+[\[자료구조\] 해시테이블(HashTable)이란?](https://mangkyu.tistory.com/102)
 
-1. 해시테이블(HashTable)이란? [ HashTable(해시테이블)이란? ] 해시 테이블은 (Key, Value)로 데이터를 저장하는 자료구조 중 하나로 빠르게 데이터를 검색할 수 있는 자료구조이다. 해시 테이블이 빠른
+[패스워드의 암호화와 저장 - Hash(해시)와 Salt(솔트)](https://st-lab.tistory.com/100)
 
-mangkyu.tistory.com](https://mangkyu.tistory.com/102)
-[패스워드의 암호화와 저장 - Hash(해시)와 Salt(솔트)
+[비밀번호 안전보관: bcrypt 를 알아보자](https://jusths.tistory.com/158)
 
-[읽기 전에] 더보기 이 번 주제 같은 경우 어디까지나 비밀번호를 어떠한 원리로 저장하게 되는지 그 과정을 살펴보기 위한 글이다. 읽다보면 구현 소스코드들이 나올텐데 실제로는 이후 나오는
-
-st-lab.tistory.com](https://st-lab.tistory.com/100)
-[비밀번호 안전보관: bcrypt 를 알아보자
-
-개요 사용자의 비밀번호를 그대로 보관하는 것은 위험하다. 비밀번호 보관에 특화된 bcrypt 를 알아보자. 참고링크 - 링크: https://auth0.com/blog/hashing-in-action-understanding-bcrypt/ - 링크: https://d2...
-
-jusths.tistory.com](https://jusths.tistory.com/158)
-[bcrypt
-
-A bcrypt library for NodeJS.. Latest version: 5.0.1, last published: a year ago. Start using bcrypt in your project by running `npm i bcrypt`. There are 3352 other projects in the npm registry using bcrypt.
-
-www.npmjs.com](https://www.npmjs.com/package/bcrypt)
+[bcrypt](https://www.npmjs.com/package/bcrypt)

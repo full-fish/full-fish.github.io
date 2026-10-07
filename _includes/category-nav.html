@@ -1,0 +1,16 @@
+<details class="category-nav" id="category-nav">
+  <summary>카테고리</summary>
+  <a class="category-nav__all" href="{{ '/blog/' | relative_url }}">전체 글<span class="category-tree__count">{{ site.posts.size }}</span></a>
+  {% include category-tree-nav.html nodes=site.data.category_nav %}
+  <a class="category-nav__more" href="{{ '/tags/' | relative_url }}">태그 모아보기</a>
+  {%- comment -%} 사이드바(.sticky > *)가 직계 자식을 display:block 으로 만들어서 script 는 details 안에 둡니다 {%- endcomment %}
+  <script>
+    (function () {
+      var nav = document.getElementById("category-nav");
+      if (window.matchMedia("(min-width: 64em)").matches) nav.open = true;
+      nav.querySelectorAll("a").forEach(function (a) {
+        if (a.pathname === location.pathname) a.setAttribute("aria-current", "page");
+      });
+    })();
+  </script>
+</details>

@@ -1,0 +1,20 @@
+{%- comment -%} 같은 카테고리의 최근 글. 2개보다 적으면 상위 카테고리까지 넓힙니다. {%- endcomment -%}
+{%- if page.categories.size > 0 -%}
+  {%- assign related = site.posts | where_exp: "p", "p.categories == page.categories" | where_exp: "p", "p.url != page.url" -%}
+  {%- if related.size < 2 -%}
+    {%- assign parent = page.categories.first -%}
+    {%- assign related = site.posts | where_exp: "p", "p.categories.first == parent" | where_exp: "p", "p.url != page.url" -%}
+  {%- endif -%}
+  {%- assign related_title = "같은 카테고리의 글" -%}
+{%- else -%}
+  {%- assign related = site.posts | where_exp: "p", "p.url != page.url" -%}
+  {%- assign related_title = "최근 글" -%}
+{%- endif -%}
+{%- if related.size > 0 %}
+<section class="related-posts">
+  <h2 class="related-posts__title">{{ related_title }}</h2>
+  <ul class="post-list">
+    {% for post in related limit: 5 %}{% include post-row.html post=post %}{% endfor %}
+  </ul>
+</section>
+{%- endif -%}

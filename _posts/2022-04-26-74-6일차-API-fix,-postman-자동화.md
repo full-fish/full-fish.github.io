@@ -12,7 +12,7 @@ tags: ["PROJECT", "codestates"]
 * post시 입력 내용 부족하면 422 에러
 * 리프레시토큰 401에러 3개로 세분화 (엑세스 토큰이 없을때, 리프레시 토큰이 없을 때, 엑세스와 리프레시 토큰 모두 만료시)
 * res 응답 형식을 그냥 data만 전송하는 것에서 data키안에 data값을 넣고 같은 선상에 accessToken 추가
-* 포스트맨 자동화 : <https://fullfish.tistory.com/73>
+* 포스트맨 자동화 : [포스트맨 자동화](/blog/73-%ED%8F%AC%EC%8A%A4%ED%8A%B8%EB%A7%A8-%EC%9E%90%EB%8F%99%ED%99%94/)
 
 **새로 안것**
 

@@ -8,11 +8,7 @@ tags: ["Fuzzy", "가중치검색", "하이라이트검색"]
 
 참고 : <https://taegon.kim/archives/9919>
 
-[[JS] 한글도 지원하는 퍼지 문자열 검색
-
-UI 작업을 하다보면 목록을 검색해야 할 때가 많다. 그런데 사람의 기억이라는 게 정확하지 않아서 혹은 전부 입력하기 귀찮아서 개떡같이 일부만 입력해도 찰떡같이 원하는 결과를 보여주는 UI
-
-taegon.kim](https://taegon.kim/archives/9919)
+[\[JS\] 한글도 지원하는 퍼지 문자열 검색](https://taegon.kim/archives/9919)
 
 **Highlight 적용**
 
@@ -55,7 +51,7 @@ console.log(match) // '안녕'
 console.log(gropus) // [ '안', '녕', 0, '안녕하세요' ]
 ```
 
-replace 매개변수 참고 : <https://fullfish.tistory.com/66>
+replace 매개변수 참고 : [정규표현식 (Regular Expression: Regex)](/blog/66-%EC%A0%95%EA%B7%9C%ED%91%9C%ED%98%84%EC%8B%9D-(Regular-Expression-Regex)/)
 
 매칭되는 글자에 color : red를 붙여서 색을 입힌다
 
@@ -166,8 +162,4 @@ exports.chageRed = (data, search) => {
 
 **fuzzy검색의 highlight와 가중치 적용**
 
-[15일차 / fuzzy검색의 highlight와 가중치 적용
-
-한것 Highlight 적용 검색을 한 글자를 빨간색으로 반환 가중치 적용 원래 db상 '과일먹자'가 '과자냠냠'보다 id값이 빨라서 상단에 위치했는데 유저가 좀더 찾기를 원했을만한 단어가 위로가게 가
-
-fullfish.tistory.com](https://fullfish.tistory.com/104?category=1053678)
+[15일차 / fuzzy검색의 highlight와 가중치 적용](/blog/104-15%EC%9D%BC%EC%B0%A8-fuzzy%EA%B2%80%EC%83%89%EC%9D%98-highlight%EC%99%80-%EA%B0%80%EC%A4%91%EC%B9%98-%EC%A0%81%EC%9A%A9/)

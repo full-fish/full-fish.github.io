@@ -4,5 +4,9 @@
 
 @charset "utf-8";
 
+@import "fullfish/variables"; // 테마의 !default 변수보다 먼저 와야 덮어씁니다
 @import "minimal-mistakes/skins/{{ site.minimal_mistakes_skin | default: 'default' }}"; // skin
 @import "minimal-mistakes"; // main partials
+@import "fullfish/base";
+@import "fullfish/apps";
+@import "fullfish/blog";

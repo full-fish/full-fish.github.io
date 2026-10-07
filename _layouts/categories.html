@@ -2,125 +2,18 @@
 layout: archive
 ---
 
-{{ content }} {% assign categories_max = 0 %} {% for category in site.categories
-%} {% if category[1].size > categories_max %} {% assign categories_max =
-category[1].size %} {% endif %} {% endfor %}
+{{ content }}
 
-<ul class="taxonomy__index">
-  {% for i in (1..categories_max) reversed %} {% for category in site.categories
-  %} {% if category[1].size == i %}
-  <li>
-    <a href="#{{ category[0] | slugify }}">
-      <strong>{{ category[0] }}</strong>
-      <span class="taxonomy__count">{{ i }}</span>
-    </a>
-  </li>
-  {% endif %} {% endfor %} {% endfor %}
-</ul>
-
-{% assign entries_layout = page.entries_layout | default: 'list' %} {% for i in
-(1..categories_max) reversed %} {% for category in site.categories %} {% if
-category[1].size == i %}
-<section id="{{ category[0] | slugify | downcase }}" class="taxonomy__section">
-  <h2 class="archive__subtitle">{{ category[0] }}</h2>
-  <div class="entries-{{ entries_layout }}">
-    {% for post in category.last %} {% include archive-single.html
-    type=entries_layout %} {% endfor %}
-  </div>
-  <a href="#page-title" class="back-to-top"
-    >{{ site.data.ui-text[site.locale].back_to_top | default: 'Back to Top' }}
-    &uarr;</a
-  >
-</section>
-{% endif %} {% endfor %} {% endfor %}
+<div class="category-index">
+  {% include category-tree-nav.html nodes=site.data.category_nav %}
+</div>
 
 <script>
+  // 예전 링크(/categories/#카테고리)로 들어오면 해당 카테고리 페이지로 보냅니다.
   (function () {
-    function normalizeHash(hash) {
-      var raw = (hash || '').replace(/^#/, '');
-      if (!raw) return '';
-      try {
-        raw = decodeURIComponent(raw);
-      } catch (_err) {}
-      return raw.toLowerCase();
-    }
-
-    function showAllSections(index, sections) {
-      if (index) index.style.display = '';
-      sections.forEach(function (section) {
-        section.style.display = '';
-      });
-      return null;
-    }
-
-    function filterByHash(hashValue) {
-      var slug = normalizeHash(typeof hashValue === 'string' ? hashValue : window.location.hash || '');
-      var sections = Array.prototype.slice.call(document.querySelectorAll('.taxonomy__section'));
-      var index = document.querySelector('.taxonomy__index');
-      var matchedSection = null;
-
-      if (!slug) {
-        return showAllSections(index, sections);
-      }
-
-      if (index) index.style.display = 'none';
-      sections.forEach(function (section) {
-        var visible = section.id === slug;
-        if (visible) {
-          matchedSection = section;
-        }
-        section.style.display = visible ? '' : 'none';
-      });
-
-      if (!matchedSection) {
-        return showAllSections(index, sections);
-      }
-
-      return matchedSection;
-    }
-
-    function isCategoryUrl(url) {
-      var currentPath = window.location.pathname.replace(/\/+$/, '');
-      var targetPath = url.pathname.replace(/\/+$/, '');
-      return targetPath === currentPath && targetPath.indexOf('/categories') !== -1 && url.hash;
-    }
-
-    function handleCategoryClick(event) {
-      var link = event.target.closest('a');
-      if (!link) {
-        return;
-      }
-
-      var targetUrl;
-      try {
-        targetUrl = new URL(link.href, window.location.origin);
-      } catch (_err) {
-        return;
-      }
-
-      if (!isCategoryUrl(targetUrl)) {
-        return;
-      }
-
-      event.preventDefault();
-      var matchedSection = filterByHash(targetUrl.hash);
-      if (window.location.hash !== targetUrl.hash) {
-        history.pushState(null, '', targetUrl.hash);
-      } else {
-        history.replaceState(null, '', targetUrl.hash);
-      }
-      if (matchedSection) {
-        matchedSection.scrollIntoView({ block: 'start' });
-      }
-    }
-
-    window.addEventListener('hashchange', function () {
-      filterByHash(window.location.hash || '');
-    });
-    window.addEventListener('DOMContentLoaded', function () {
-      filterByHash(window.location.hash || '');
-      document.addEventListener('click', handleCategoryClick);
-    });
-    filterByHash(window.location.hash || '');
+    var urls = {{ site.data.category_hash_redirects | jsonify }};
+    var slug = "";
+    try { slug = decodeURIComponent(location.hash.slice(1)).toLowerCase(); } catch (e) {}
+    if (urls[slug]) location.replace("{{ site.baseurl }}" + urls[slug]);
   })();
 </script>

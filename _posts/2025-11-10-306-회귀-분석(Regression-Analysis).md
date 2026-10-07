@@ -218,7 +218,9 @@ x1과 x2의 VIF 값이 매우 높음 (보통 10 이상이면 다중공선성 의
 회귀 모델에서 계수 추정의 불안정성을 유발할 수 있음을 의미함.
 
 반면 x3는 x1, x2와 독립적이라 VIF ≈ 1 정도로 정상적."""
-``````python
+```
+
+```python
 # 자기 상관 확인 Durbin-Watson. 전차들이 독립적인지 (자기상관이 있는지) Durbin–Watson 통계량으로 판단
 import numpy as np
 import pandas as pd

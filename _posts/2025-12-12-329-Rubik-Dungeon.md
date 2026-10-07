@@ -9,11 +9,7 @@ categories: ["Project", "unity"]
 
 **게임 플레이 링크**
 
-[RubiksDungeon by full-fish
-
-full-fish.itch.io](https://full-fish.itch.io/rubiksdungeon)
-
-#### 
+[RubiksDungeon by full-fish](https://full-fish.itch.io/rubiksdungeon)
 
 **플레이 영상**
 
@@ -23,13 +19,7 @@ full-fish.itch.io](https://full-fish.itch.io/rubiksdungeon)
 
 <https://github.com/full-fish/RubicksDungeon>
 
-[GitHub - full-fish/RubicksDungeon
-
-Contribute to full-fish/RubicksDungeon development by creating an account on GitHub.
-
-github.com](https://github.com/full-fish/RubicksDungeon)
-
-#### 
+[GitHub - full-fish/RubicksDungeon](https://github.com/full-fish/RubicksDungeon)
 
 **게임 개요**
 

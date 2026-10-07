@@ -43,9 +43,7 @@ categories:
         children: []
       - name: 데이터 시각화
         children: []
-      - name: 머신러닝
-        children: []
-      - name: 딥러닝
+      - name: 머신러닝, 딥러닝
         children: []
       - name: 통계
         children: []

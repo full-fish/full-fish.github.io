@@ -11,7 +11,9 @@ categories: ["데이터 분석", "데이터 수집"]
 pip install playwright
 playwright install chromium # Chromium 만 설치
 playwright install # Chromium, Firefox, WebKit 엔진을 모두 설치 우선 Chromium만 필요
-``````python
+```
+
+```python
 # 기본 예제
 import asyncio
 from playwright.async_api import async_playwright
@@ -28,7 +30,9 @@ async def main():
 
 if __name__ == "__main__":
     asyncio.run(main())
-``````javascript
+```
+
+```javascript
 await p.chromium.launch(headless=True) # defual는 True인데 False하면 창 있이 실행
 await browser.new_page()
 await page.goto(url)
@@ -134,7 +138,9 @@ aiomysql.create_pool() → 연결 풀(Connection Pool) 생성
 pool.acquire() → Connection Pool에서 하나의 MySQL 연결(Connection)을 빌려오기
 pool.close() → 연결 풀을 닫힘으로 요청 (동기)
 await pool.wait_close() → 실제 연결이 닫히기를 기다리는 함수 (비동기)
-``````python
+```
+
+```python
 # 예제
 import asyncio
 import aiomysql

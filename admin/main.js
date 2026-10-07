@@ -129,57 +129,30 @@
     return true;
   }
 
-  function minimizePaths(paths) {
-    return paths
-      .slice()
-      .sort((a, b) => a.length - b.length)
-      .filter((path, index, list) => {
-        for (let i = 0; i < index; i += 1) {
-          if (isPrefixPath(list[i], path)) {
-            return false;
-          }
-        }
-        return true;
-      });
-  }
-
-  function buildSyncPlan() {
-    const originalPaths = collectNodePaths(state.originalTree, [], {});
-    const currentPaths = collectNodePaths(state.tree, [], {});
-    const changed = [];
-    const deleted = [];
-
+  // 글이 속한 노드 = 원래 트리에서 글의 categories 와 가장 깊게 일치하는 노드.
+  // 그 노드가 지금 트리에 없으면 글을 지우고, 있으면 노드의 지금 경로로 바꿉니다.
+  // (하위 카테고리를 밖으로 옮긴 뒤 상위를 지워도 옮긴 쪽 글은 남고, 상위·하위를 함께 바꿔도 둘 다 반영)
+  function deepestOriginalId(categories, originalPaths) {
+    let found = null;
     Object.keys(originalPaths).forEach((id) => {
-      if (!currentPaths[id]) {
-        deleted.push(originalPaths[id]);
-        return;
-      }
-      const fromPath = originalPaths[id];
-      const toPath = currentPaths[id];
-      if (JSON.stringify(fromPath) !== JSON.stringify(toPath)) {
-        changed.push({ id, fromPath, toPath });
+      const path = originalPaths[id];
+      if (isPrefixPath(path, categories) && (!found || path.length > originalPaths[found].length)) {
+        found = id;
       }
     });
+    return found;
+  }
 
-    const minimalChanged = changed
-      .sort((a, b) => a.fromPath.length - b.fromPath.length)
-      .filter((candidate, index, list) => {
-        for (let i = 0; i < index; i += 1) {
-          if (isPrefixPath(list[i].fromPath, candidate.fromPath)) {
-            return false;
-          }
-        }
-        return true;
-      });
-
-    return {
-      changes: minimalChanged,
-      deletions: minimizePaths(deleted),
-    };
+  function hasTreeChanges() {
+    const originalPaths = getOriginalPathMap();
+    const currentPaths = getCurrentPathMap();
+    return Object.keys(originalPaths).some(
+      (id) => !currentPaths[id] || JSON.stringify(originalPaths[id]) !== JSON.stringify(currentPaths[id])
+    );
   }
 
   function parseFrontMatter(content) {
-    const match = content.match(/^---\n([\s\S]*?)\n---\n?([\s\S]*)$/);
+    const match = content.match(/^---\r?\n([\s\S]*?)\r?\n---(?:\r?\n|$)([\s\S]*)$/);
     if (!match) {
       return null;
     }
@@ -187,9 +160,54 @@
     return { data, body: match[2] || "" };
   }
 
-  function stringifyFrontMatter(data, body) {
-    const yamlText = jsyaml.dump(data, { noRefs: true, lineWidth: -1 }).trim();
-    return `---\n${yamlText}\n---\n${body}`;
+  // front matter의 categories 줄만 바꿉니다. YAML 전체를 다시 쓰면
+  // date가 UTC로 바뀌는 등 다른 값까지 달라지므로 나머지 바이트는 그대로 둡니다.
+  function replaceCategoriesLine(content, categories) {
+    const match = content.match(/^---(\r?\n)([\s\S]*?)\r?\n---(\r?\n|$)/);
+    if (!match) {
+      return null;
+    }
+    const nl = match[1];
+    const line = "categories: [" + categories.map((c) => JSON.stringify(c)).join(", ") + "]";
+    const lines = match[2].split(/\r?\n/);
+    const out = [];
+    let replaced = false;
+    for (let i = 0; i < lines.length; i += 1) {
+      const key = lines[i].match(/^categories\s*:(.*)$/);
+      if (!key) {
+        out.push(lines[i]);
+        continue;
+      }
+      if (!replaced) {
+        out.push(line);
+        replaced = true;
+      }
+      if (key[1].trim() === "") {
+        // 블록 목록(- a) 형태면 그 항목 줄들도 함께 교체
+        while (i + 1 < lines.length && /^\s*-\s/.test(lines[i + 1])) {
+          i += 1;
+        }
+      }
+    }
+    if (!replaced) {
+      out.push(line);
+    }
+    return "---" + nl + out.join(nl) + nl + "---" + match[3] + content.slice(match[0].length);
+  }
+
+  // 순서를 지키면서 최대 limit 개씩 동시에 요청
+  async function mapLimit(items, limit, fn) {
+    const results = new Array(items.length);
+    let next = 0;
+    async function worker() {
+      while (next < items.length) {
+        const i = next;
+        next += 1;
+        results[i] = await fn(items[i], i);
+      }
+    }
+    await Promise.all(Array.from({ length: Math.min(limit, items.length) }, worker));
+    return results;
   }
 
   function normalizeCategories(categories) {
@@ -209,20 +227,25 @@
     return entries.filter((entry) => entry.type === "file" && entry.name.endsWith(".md"));
   }
 
+  // 모든 글의 { path, sha, content }
+  async function loadPosts() {
+    const cfg = state.config;
+    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
+    const entries = await loadPostEntries();
+    return mapLimit(entries, 6, async (entry) => {
+      const data = await gh(`/repos${repo}/contents/${encodeURIComponent(entry.path)}?ref=${encodeURIComponent(state.branch)}`);
+      return { path: entry.path, sha: data.sha, content: decodeBase64(data.content) };
+    });
+  }
+
   async function ensurePostCategoryIndex() {
     if (state.postCategoryIndex) {
       return state.postCategoryIndex;
     }
 
-    const cfg = state.config;
-    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
-    const entries = await loadPostEntries();
     const index = [];
-
-    for (const entry of entries) {
-      const data = await gh(`/repos${repo}/contents/${encodeURIComponent(entry.path)}?ref=${encodeURIComponent(state.branch)}`);
-      const content = decodeBase64(data.content);
-      const parsed = parseFrontMatter(content);
+    for (const post of await loadPosts()) {
+      const parsed = parseFrontMatter(post.content);
       if (!parsed) {
         continue;
       }
@@ -230,15 +253,11 @@
       if (categories.length === 0) {
         continue;
       }
-      index.push({ path: entry.path, categories });
+      index.push({ path: post.path, categories });
     }
 
     state.postCategoryIndex = index;
     return index;
-  }
-
-  function countPostsForPath(postIndex, categoryPath) {
-    return postIndex.filter((entry) => isPrefixPath(categoryPath, entry.categories)).length;
   }
 
   function getOriginalPathMap() {
@@ -297,7 +316,16 @@
         }
       }
 
-      el.deleteModalMessage.innerHTML = `<strong>${categoryName}</strong> 카테고리를 삭제하면 연결된 글 <strong>${postCount}개</strong>도 함께 삭제됩니다.`;
+      const nameEl = document.createElement("strong");
+      nameEl.textContent = categoryName;
+      const countEl = document.createElement("strong");
+      countEl.textContent = postCount + "개";
+      el.deleteModalMessage.replaceChildren(
+        nameEl,
+        " 카테고리를 삭제하면 연결된 글 ",
+        countEl,
+        "도 함께 삭제됩니다."
+      );
       el.deleteModal.classList.add("is-open");
       el.deleteModal.setAttribute("aria-hidden", "false");
       el.deleteConfirmInput.value = "";
@@ -311,51 +339,42 @@
     });
   }
 
-  async function buildPostMutations(plan) {
-    if (plan.changes.length === 0 && plan.deletions.length === 0) {
+  async function buildPostMutations() {
+    if (!hasTreeChanges()) {
       return [];
     }
 
-    const cfg = state.config;
-    const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;
-    const entries = await loadPostEntries();
+    const originalPaths = getOriginalPathMap();
+    const currentPaths = getCurrentPathMap();
     const mutations = [];
 
-    for (const entry of entries) {
-      const data = await gh(`/repos${repo}/contents/${encodeURIComponent(entry.path)}?ref=${encodeURIComponent(state.branch)}`);
-      const content = decodeBase64(data.content);
-      const parsed = parseFrontMatter(content);
+    for (const post of await loadPosts()) {
+      const parsed = parseFrontMatter(post.content);
       if (!parsed) {
         continue;
       }
 
       const categories = normalizeCategories(parsed.data.categories);
-      if (categories.length === 0) {
+      const id = deepestOriginalId(categories, originalPaths);
+      if (!id) {
         continue;
       }
 
-      const deleteMatch = plan.deletions.find((path) => isPrefixPath(path, categories));
-      if (deleteMatch) {
-        mutations.push({ type: "delete", path: entry.path, sha: data.sha, categories });
+      if (!currentPaths[id]) {
+        mutations.push({ type: "delete", path: post.path, sha: post.sha, categories });
         continue;
       }
 
-      const changeMatch = plan.changes.find((change) => isPrefixPath(change.fromPath, categories));
-      if (!changeMatch) {
-        continue;
-      }
-
-      const nextCategories = changeMatch.toPath.concat(categories.slice(changeMatch.fromPath.length));
+      const nextCategories = currentPaths[id].concat(categories.slice(originalPaths[id].length));
       if (JSON.stringify(nextCategories) === JSON.stringify(categories)) {
         continue;
       }
 
-      parsed.data.categories = nextCategories;
       mutations.push({
         type: "update",
-        path: entry.path,
-        sha: data.sha,
-        content: stringifyFrontMatter(parsed.data, parsed.body),
+        path: post.path,
+        sha: post.sha,
+        content: replaceCategoriesLine(post.content, nextCategories),
         before: categories,
         after: nextCategories,
       });
@@ -426,8 +445,12 @@
     list.splice(to, 0, item);
   }
 
+  function newNode(name) {
+    return { id: "node-" + state.nextNodeId++, name, children: [] };
+  }
+
   function addRoot() {
-    state.tree.push({ name: "새 카테고리", children: [] });
+    state.tree.push(newNode("새 카테고리"));
     render();
   }
 
@@ -436,7 +459,7 @@
     if (!found) {
       return;
     }
-    found.node.children.push({ name: "새 하위 카테고리", children: [] });
+    found.node.children.push(newNode("새 하위 카테고리"));
     render();
   }
 
@@ -446,12 +469,11 @@
       return;
     }
 
-    const originalPathMap = getOriginalPathMap();
-    const currentPathMap = getCurrentPathMap();
-    const currentPath = currentPathMap[found.node.id] || [];
-    const persistedPath = originalPathMap[found.node.id] || currentPath;
+    // 저장할 때 실제로 지워질 글 수: 이 노드(와 지금 그 아래 있는 노드)에 속한 글
+    const ids = new Set(Object.keys(collectNodePaths([found.node], [], {})));
+    const originalPaths = getOriginalPathMap();
     const postIndex = await ensurePostCategoryIndex();
-    const postCount = countPostsForPath(postIndex, persistedPath);
+    const postCount = postIndex.filter((entry) => ids.has(deepestOriginalId(entry.categories, originalPaths))).length;
     const confirmed = await openDeleteModal(found.node.name, postCount);
 
     if (!confirmed) {
@@ -549,6 +571,7 @@
     input.value = node.name;
     input.addEventListener("change", function () {
       renameNode(path, input.value);
+      input.value = node.name; // 빈 이름이면 원래 이름으로 되돌림
     });
 
     left.appendChild(badge);
@@ -628,6 +651,10 @@
   }
 
   async function authenticate() {
+    if (!state.config) {
+      setStatus(el.authStatus, "admin config를 불러오지 못했습니다. 새로고침해 주세요.", false);
+      return;
+    }
     state.token = el.token.value.trim();
     state.branch = el.branch.value.trim() || state.config.defaultBranch || "main";
     if (!state.token) {
@@ -656,8 +683,7 @@
   async function save() {
     try {
       el.saveBtn.disabled = true;
-      const plan = buildSyncPlan();
-      const mutations = await buildPostMutations(plan);
+      const mutations = await buildPostMutations();
       const yamlText = jsyaml.dump({ categories: state.tree.map(stripNodeIds) }, { noRefs: true, lineWidth: -1 }).trim() + "\n";
       const cfg = state.config;
       const repo = `/${cfg.repositoryOwner}/${cfg.repositoryName}`;

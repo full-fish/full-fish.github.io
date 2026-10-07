@@ -1,0 +1,227 @@
+/* ==========================================================================
+   홈 (앱 목록)
+   ========================================================================== */
+
+.apps-page {
+  max-width: 1080px;
+}
+
+.apps-hero {
+  padding: 3.5em 0 2.5em;
+  text-align: center;
+
+  &__title {
+    margin: 0 0 0.3em;
+    font-size: $type-size-2;
+    font-weight: 800;
+    letter-spacing: -0.02em;
+
+    @include breakpoint($medium) {
+      font-size: $type-size-1;
+    }
+  }
+
+  &__subtitle {
+    margin: 0 0 1.25em;
+    color: $muted-text-color;
+    font-size: $type-size-4;
+  }
+
+  &__link {
+    font-size: $type-size-5;
+    font-weight: 600;
+    text-decoration: none;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
+}
+
+.apps-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.25em;
+  margin: 0 0 2em;
+  padding: 0;
+  list-style: none;
+
+  @include breakpoint($medium) {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 1.5em;
+  }
+
+  > li {
+    display: flex;
+    margin: 0;
+  }
+}
+
+.app-card {
+  --app-accent: #{$ff-brand};
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 1.5em;
+  background: $background-color;
+  border: 1px solid $border-color;
+  border-radius: $ff-radius-lg;
+  box-shadow: $ff-shadow-card;
+
+  @include breakpoint($medium) {
+    padding: 2em;
+  }
+
+  @media (hover: hover) and (prefers-reduced-motion: no-preference) {
+    transition: box-shadow 0.2s ease, transform 0.2s ease;
+
+    &:hover {
+      box-shadow: $ff-shadow-card-hover;
+      transform: translateY(-2px);
+    }
+  }
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 1em;
+    margin-bottom: 1.25em;
+  }
+
+  &__icon {
+    flex: none;
+    width: 72px;
+    height: 72px;
+    border-radius: 22%;
+    box-shadow: 0 0 0 1px rgba(16, 24, 40, 0.06), 0 4px 12px rgba(16, 24, 40, 0.08);
+  }
+
+  &__title {
+    margin: 0 0 0.3em;
+    font-size: $type-size-3;
+    font-weight: 800;
+  }
+
+  &__badges {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4em;
+    margin: 0;
+  }
+
+  &__tagline {
+    margin: 0 0 0.6em;
+    font-size: $type-size-4;
+    font-weight: 700;
+    line-height: 1.45;
+  }
+
+  &__description {
+    margin: 0 0 1.25em;
+    color: $muted-text-color;
+    line-height: 1.7;
+  }
+
+  &__features {
+    margin: 0 0 1.75em;
+    padding: 0;
+    list-style: none;
+
+    li {
+      position: relative;
+      margin: 0 0 0.5em;
+      padding-left: 1.6em;
+      line-height: 1.5;
+
+      // 체크 표시 (CSS로 그림)
+      &::before {
+        content: "";
+        position: absolute;
+        top: 0.3em;
+        left: 0.15em;
+        width: 0.45em;
+        height: 0.75em;
+        border: solid var(--app-accent);
+        border-width: 0 2.5px 2.5px 0;
+        transform: rotate(45deg);
+      }
+    }
+  }
+
+  // 버튼 아래에 정책 링크: 어느 폭에서도 두 카드의 하단 구조가 같아 선이 맞습니다
+  &__footer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 0.75em;
+    margin-top: auto;
+    padding-top: 1.25em;
+    border-top: 1px solid $border-color;
+  }
+
+  // 버튼과 "출시 준비 중" 배지를 같은 높이로 (카드끼리 하단 선이 맞도록)
+  &__cta.btn,
+  &__soon {
+    display: inline-flex;
+    align-items: center;
+    min-height: 2.75rem;
+  }
+
+  &__cta.btn {
+    margin: 0;
+    padding: 0 1.2em;
+    font-size: $type-size-5;
+    background-color: var(--app-accent);
+    border-radius: $border-radius;
+
+    &:hover {
+      background-color: var(--app-accent);
+      filter: brightness(0.9);
+    }
+  }
+
+  &__soon {
+    padding: 0 1em;
+    color: $muted-text-color;
+    font-size: $type-size-6;
+    font-weight: 600;
+    border: 1px dashed $border-color;
+    border-radius: 999px;
+  }
+
+  &__links {
+    display: flex;
+    gap: 1em;
+    margin: 0;
+    font-size: $type-size-6;
+
+    a {
+      color: $muted-text-color;
+
+      &:hover {
+        color: $text-color;
+      }
+    }
+  }
+}
+
+.app-badge {
+  display: inline-block;
+  padding: 0.15em 0.6em;
+  color: $muted-text-color;
+  font-size: $type-size-7;
+  font-weight: 700;
+  line-height: 1.6;
+  background: $ff-surface;
+  border-radius: 999px;
+
+  &--live {
+    color: #1a7f37;
+    background: #dcfce7;
+  }
+
+  &--soon {
+    color: var(--app-accent);
+    background: $ff-brand-soft;
+  }
+}

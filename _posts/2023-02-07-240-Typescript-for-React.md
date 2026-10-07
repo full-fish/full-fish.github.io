@@ -94,11 +94,7 @@ npm i --save-dev @types/라이브러리이름
 
 SyntheticEvent : <https://reactjs.org/docs/events.html>
 
-[SyntheticEvent – React
-
-A JavaScript library for building user interfaces
-
-reactjs.org](https://reactjs.org/docs/events.html)
+[SyntheticEvent – React](https://reactjs.org/docs/events.html)
 
 **Enum (enumerable)**
 

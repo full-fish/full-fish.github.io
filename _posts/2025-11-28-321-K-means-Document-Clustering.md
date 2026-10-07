@@ -3,6 +3,7 @@ title: "K-means Document Clustering"
 date: 2025-11-28 17:46:32 +0900
 render_with_liquid: false
 categories: ["데이터 분석", "머신러닝, 딥러닝"]
+math: true
 ---
 
 ## 1. K-means 문서 군집화란?

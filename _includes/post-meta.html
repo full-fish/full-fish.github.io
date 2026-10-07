@@ -1,0 +1,14 @@
+<p class="post-meta">
+  <time datetime="{{ page.date | date_to_xmlschema }}">{{ page.date | date: site.date_format }}</time>
+  {%- if page.categories.size > 0 %}
+  <span class="post-meta__sep" aria-hidden="true">·</span>
+  {%- assign cat_url = "/categories/" -%}
+  {%- for c in page.categories -%}
+    {%- assign seg = c | slugify -%}
+    {%- if seg == "" %}{% break %}{% endif -%}
+    {%- assign cat_url = cat_url | append: seg | append: "/" -%}
+    {%- unless forloop.first %} <span aria-hidden="true">›</span>{% endunless %}
+    <a href="{{ cat_url | relative_url }}">{{ c | escape }}</a>
+  {%- endfor -%}
+  {%- endif %}
+</p>

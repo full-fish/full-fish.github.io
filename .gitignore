@@ -20,3 +20,7 @@ _site/
 
 # local bundler metadata
 .bundle/
+
+# local tooling
+.serena/
+.venv/

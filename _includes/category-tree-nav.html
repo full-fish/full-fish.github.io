@@ -1,20 +1,11 @@
-{% assign nodes = include.nodes %}
-{% assign path_prefix = include.path_prefix | default: '' %}
-{% if nodes and nodes.size > 0 %}
-<ul{% if include.is_child %} class="nav__child-items"{% else %} class="nav__items"{% endif %}>
-  {% for node in nodes %}
-    {% assign node_name = node.name | default: node %}
-    {% assign node_count = site.categories[node_name].size | default: 0 %}
-
-    {% assign node_slug = node_name | slugify | downcase %}
-    <li>
-      <a href="{{ '/categories/' | relative_url }}#{{ node_slug }}">
-        <span class="nav__sub-title">{{ node_name }} ({{ node_count }})</span>
-      </a>
-      {% if node.children and node.children.size > 0 %}
-        {% include category-tree-nav.html nodes=node.children is_child=true %}
-      {% endif %}
-    </li>
-  {% endfor %}
+{%- comment -%} site.data.category_nav 트리 (_plugins/taxonomy_pages.rb) {%- endcomment -%}
+{%- if include.nodes.size > 0 -%}
+<ul class="category-tree{% if include.child %} category-tree--child{% endif %}">
+  {%- for node in include.nodes %}
+  <li>
+    <a href="{{ node.url | relative_url }}">{{ node.name | escape }}<span class="category-tree__count">{{ node.count }}</span></a>
+    {%- if node.children.size > 0 %}{% include category-tree-nav.html nodes=node.children child=true %}{% endif %}
+  </li>
+  {%- endfor %}
 </ul>
-{% endif %}
+{%- endif -%}

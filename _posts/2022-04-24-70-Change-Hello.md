@@ -17,8 +17,4 @@ tags: ["nomadcoder"]
 
 <https://github.com/full-fish/vanillaJS-changeHello>
 
-[GitHub - full-fish/vanillaJS-changeHello
-
-Contribute to full-fish/vanillaJS-changeHello development by creating an account on GitHub.
-
-github.com](https://github.com/full-fish/vanillaJS-changeHello)
+[GitHub - full-fish/vanillaJS-changeHello](https://github.com/full-fish/vanillaJS-changeHello)

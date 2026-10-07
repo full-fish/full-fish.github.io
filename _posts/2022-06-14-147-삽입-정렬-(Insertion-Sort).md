@@ -6,8 +6,6 @@ categories: ["코딩 테스트", "알고리즘 공부"]
 tags: ["sort", "정렬", "insertion sort", "삽입 정렬"]
 ---
 
-#### 
-
 ![](https://pub-3698f907d1774dd4aa55a0831cb166dd.r2.dev/tistory/147/insertion_AdobeExpress.gif)
 
 
@@ -91,8 +89,6 @@ console.log(insertionSort(arr));
 comparisons : 590
 swaps : 590
 ```
-
-#### 
 
 #### **번외**
 

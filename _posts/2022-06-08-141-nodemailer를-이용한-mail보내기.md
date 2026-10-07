@@ -106,8 +106,4 @@ exports.sendEmail = (email, newPassword, subject) => {
 
 **nodemailer 활용**
 
-[리펙토링 및 개선 - 7 / nodemailer를 이용한 비밀번호 재발급
-
-현재의 문제점 현재 user의 password는 Bcrypt에 의해 hashing되어져서 보관되고 있으므로 복호화가 불가능하다 그래서 user가 password를 잊어먹었을 경우에는 찾을 방법이 없다 만약에 mysql에서 password를
-
-fullfish.tistory.com](https://fullfish.tistory.com/142)
+[리펙토링 및 개선 - 7 / nodemailer를 이용한 비밀번호 재발급](/blog/142-%EB%A6%AC%ED%8E%99%ED%86%A0%EB%A7%81-%EB%B0%8F-%EA%B0%9C%EC%84%A0-7-nodemailer%EB%A5%BC-%EC%9D%B4%EC%9A%A9%ED%95%9C-%EB%B9%84%EB%B0%80%EB%B2%88%ED%98%B8-%EC%9E%AC%EB%B0%9C%EA%B8%89/)

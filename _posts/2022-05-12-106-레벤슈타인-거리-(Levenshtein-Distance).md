@@ -124,19 +124,11 @@ matix[x][y]의 값은 첫번째 인자 문자열의 x번째까지, 두번째 인
 
 참고 : <https://too-march.tistory.com/20>
 
-[[5] 문장의 유사도 분석하기 - 레벤슈타인 거리, N-gram
-
-레벤슈타인 거리란? 레벤슈타인 거리는 문자열이 얼마나 비슷한 지를 나타내는 것으로 편집 거리라고도 부른다. 비슷한 어구 검색, DNA 배열의 유사성 판단 등 다양한 분야에서 활용된다. 편집할
-
-too-march.tistory.com](https://too-march.tistory.com/20)
+[\[5\] 문장의 유사도 분석하기 - 레벤슈타인 거리, N-gram](https://too-march.tistory.com/20)
 
 <https://renuevo.github.io/data-science/levenshtein-distance/>
 
-[[DataScience] Levenshtein Distance (편집거리 알고리즘) - 문장 유사도 분석을 어떻게 하는가?
-
-Levenshtein Distance (편집거리 알고리즘) 는 러시아의 과학자 블라디미르 리벤슈테인가 고안한 알고리즘 Levenshtein Distance이 무엇일까? 오늘날 언어학/데이터과학 같이 폭 넓게 사용되고 있으며 문장
-
-renuevo.github.io](https://renuevo.github.io/data-science/levenshtein-distance/)
+[\[DataScience\] Levenshtein Distance (편집거리 알고리즘) - 문장 유사도 분석을 어떻게 하는가?](https://renuevo.github.io/data-science/levenshtein-distance/)
 
 리벤슈타인거리 하이라이트 코드
 
@@ -178,16 +170,8 @@ exports.chageRed = (data, search) => {
 
 **리벤슈타인 거리 개선**
 
-[레벤슈타인 거리 시간복잡도와 공간복잡도 개선
-
-기존 코드 //레벤슈타인 거리 코드 exports.levenshteinDistance = (str, search) => { if (search === undefined) return 0; if (str === search) return 0; let aLen = str.length; let bLen = search.length; i..
-
-fullfish.tistory.com](https://fullfish.tistory.com/108)
+[레벤슈타인 거리 시간복잡도와 공간복잡도 개선](/blog/108-%EB%A0%88%EB%B2%A4%EC%8A%88%ED%83%80%EC%9D%B8-%EA%B1%B0%EB%A6%AC-%EC%8B%9C%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84%EC%99%80-%EA%B3%B5%EA%B0%84%EB%B3%B5%EC%9E%A1%EB%8F%84-%EA%B0%9C%EC%84%A0/)
 
 **리벤슈타인 거리 적용**
 
-[16일차 / axios, 리벤슈타인 거리 값 추가 및 하이라이트 적용
-
-한것 프론트에서 axios 분기 만듦 리벤슈타인 거리 값 추가 및 하이라이트 적용 axios분기 예시(accountGet)일 경우 export function accountGet(trip\_id) { console.log('어카운트 겟요청 됨'); let url = `${end..
-
-fullfish.tistory.com](https://fullfish.tistory.com/119?category=1053678)
+[16일차 / axios, 리벤슈타인 거리 값 추가 및 하이라이트 적용](/blog/119-16%EC%9D%BC%EC%B0%A8-axios,-%EB%A6%AC%EB%B2%A4%EC%8A%88%ED%83%80%EC%9D%B8-%EA%B1%B0%EB%A6%AC-%EA%B0%92-%EC%B6%94%EA%B0%80-%EB%B0%8F-%ED%95%98%EC%9D%B4%EB%9D%BC%EC%9D%B4%ED%8A%B8-%EC%A0%81%EC%9A%A9/)

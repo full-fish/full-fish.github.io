@@ -17,11 +17,7 @@ await slack.slack("내용");
 
 [https://slack.com/](https://slack.com/intl/ko-kr/)
 
-[Slack은 미래의 업무가 이루어지는 곳입니다
-
-Slack은 여러분의 팀과 소통할 새로운 방법입니다. 이메일보다 빠르고, 더 조직적이며, 훨씬 안전합니다.
-
-slack.com](https://slack.com/intl/ko-kr/)
+[Slack은 미래의 업무가 이루어지는 곳입니다](https://slack.com/intl/ko-kr/)
 
 에 접속하여 새 워크스페이스 개설을 누르고 워크스페이스를 생성한다
 
@@ -29,11 +25,7 @@ slack.com](https://slack.com/intl/ko-kr/)
 
 <https://api.slack.com/apps>
 
-[Slack API: Applications | Slack
-
-Your Apps Don't see an app you're looking for? Sign in to another workspace.
-
-api.slack.com](https://api.slack.com/apps)
+[Slack API: Applications \| Slack](https://api.slack.com/apps)
 
 로 접속해서 Create New App을 누른다음
 
@@ -115,9 +107,7 @@ send("user1", "send message");
 
 <https://api.slack.com/methods>
 
-[Web API methods | Slack
-
-api.slack.com](https://api.slack.com/methods)
+[Web API methods \| Slack](https://api.slack.com/methods)
 
 여기서 원하는 메소드의 사용법을 숙지해서 사용하자
 
@@ -185,8 +175,4 @@ await slack.slack("내용");
 
 **slack 적용**
 
-[7일차 / Slack Bot
-
-한 것 환경변수들 추가 develoment와 production 데이터베이스 이분화 코드 간결화 전체적인 refactory가 끝났다 이제 기본 골자는 잡혔으니까 백엔드팀원과 서로 구현하고 싶은것을 각자구현하고 merge
-
-fullfish.tistory.com](https://fullfish.tistory.com/79?category=1053678)
+[7일차 / Slack Bot](/blog/79-7%EC%9D%BC%EC%B0%A8-Slack-Bot/)

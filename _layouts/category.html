@@ -1,10 +1,29 @@
 ---
-layout: archive
+layout: default
 ---
+{%- comment -%} _plugins/taxonomy_pages.rb 가 만드는 카테고리 페이지 {%- endcomment -%}
+<div id="main" role="main">
+  {% include sidebar.html %}
 
-{{ content }}
+  <div class="archive">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="{{ '/blog/' | relative_url }}">블로그</a>
+      <span aria-hidden="true">›</span> <a href="{{ '/categories/' | relative_url }}">카테고리</a>
+      {% for parent in page.parents %}<span aria-hidden="true">›</span> <a href="{{ parent.url | relative_url }}">{{ parent.name | escape }}</a>
+      {% endfor %}
+    </nav>
+    <h1 id="page-title" class="page__title">{{ page.title | escape }} <span class="page__title-count">{{ page.posts.size }}<span class="visually-hidden">개의 글</span></span></h1>
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% include posts-category.html taxonomy=page.taxonomy type=entries_layout %}
+    {% if page.children.size > 0 %}
+    <ul class="chip-list" aria-label="하위 카테고리">
+      {% for child in page.children %}
+      <li><a class="chip" href="{{ child.url | relative_url }}">{{ child.name | escape }}<span class="chip__count">{{ child.count }}</span></a></li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+
+    <ul class="post-list">
+      {% for post in page.posts %}{% include post-row.html post=post %}{% endfor %}
+    </ul>
+  </div>
 </div>

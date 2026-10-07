@@ -1,0 +1,24 @@
+---
+layout: archive
+---
+
+{{ content }}
+
+<div class="post-filter" role="search">
+  <label class="visually-hidden" for="post-filter">글 찾기</label>
+  <input class="post-filter__input" id="post-filter" type="search" placeholder="제목, 카테고리, 태그로 찾기" autocomplete="off">
+  <p class="post-filter__count" aria-live="polite"><span id="post-filter-count">{{ site.posts.size }}</span>개의 글</p>
+</div>
+
+{% assign years = site.posts | group_by_exp: "post", "post.date | date: '%Y'" %}
+{% for year in years %}
+<section class="post-year">
+  <h2 class="post-year__title">{{ year.name }}<span class="post-year__count">{{ year.size }}</span></h2>
+  <ul class="post-list">
+    {% for post in year.items %}{% include post-row.html post=post %}{% endfor %}
+  </ul>
+</section>
+{% endfor %}
+<p class="post-filter__empty" id="post-filter-empty" hidden>찾는 글이 없어요.</p>
+
+<script src="{{ '/assets/js/blog-filter.js' | relative_url }}" defer></script>

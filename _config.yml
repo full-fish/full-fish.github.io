@@ -1,199 +1,81 @@
-# Welcome to Jekyll!
-#
-# This config file is meant for settings that affect your entire site, values
-# which you are expected to set up once and rarely need to edit after that.
-# For technical reasons, this file is *NOT* reloaded automatically when you use
-# `jekyll serve`. If you change this file, please restart the server process.
+# 사이트 설정. 바꾼 뒤에는 `jekyll serve`를 다시 시작해야 반영됩니다.
+# 테마는 Minimal Mistakes 4.24 를 저장소에 그대로 들고 있습니다 (_layouts, _includes, _sass/minimal-mistakes).
+# 사이트 전용 코드는 _sass/fullfish, _plugins, _data 에 있습니다.
 
-# Theme Settings
-#
-# Review documentation to determine if you should use `theme` or `remote_theme`
-# https://mmistakes.github.io/minimal-mistakes/docs/quick-start-guide/#installing-the-theme
+minimal_mistakes_skin: "default"
 
-# theme                  : "minimal-mistakes-jekyll"
-# remote_theme           : "mmistakes/minimal-mistakes"
-minimal_mistakes_skin: "default" # "air", "aqua", "contrast", "dark", "dirt", "neon", "mint", "plum", "sunrise"
-
-# Site Settings
+# Site
 locale: "ko-KR"
 title: "Fullfish Apps"
 title_separator: "-"
 subtitle: "일상을 더 가볍게 만드는 앱을 만듭니다"
 name: "fullfish"
-description: "fullfish가 만든 앱들을 소개합니다."
+description: "fullfish가 만든 앱과 개발 블로그"
 url: "https://full-fish.github.io"
-baseurl: # the subpath of your site, e.g. "/blog"
+baseurl: ""
 repository: "full-fish/full-fish.github.io"
-teaser: # path of fallback teaser image, e.g. "/assets/images/500x300.png"
-logo: "/assets/images/apps/fullweight/icon.png"
+logo: "/assets/images/logo.svg"
 masthead_title: "fullfish"
-# breadcrumbs            : false # true, false (default)
-words_per_minute: 200
-comments:
-  provider: # false (default), "disqus", "discourse", "facebook", "staticman", "staticman_v2", "utterances", "giscus", "custom"
-  disqus:
-    shortname: # https://help.disqus.com/customer/portal/articles/466208-what-s-a-shortname-
-  discourse:
-    server: # https://meta.discourse.org/t/embedding-discourse-comments-via-javascript/31963 , e.g.: meta.discourse.org
-  facebook:
-    # https://developers.facebook.com/docs/plugins/comments
-    appid:
-    num_posts: # 5 (default)
-    colorscheme: # "light" (default), "dark"
-  utterances:
-    theme: # "github-light" (default), "github-dark"
-    issue_term: # "pathname" (default)
-  giscus:
-    repo_id: # Shown during giscus setup at https://giscus.app
-    category_name: # Full text name of the category
-    category_id: # Shown during giscus setup at https://giscus.app
-    discussion_term: # "pathname" (default), "url", "title", "og:title"
-    reactions_enabled: # '1' for enabled (default), '0' for disabled
-    theme: # "light" (default), "dark", "dark_dimmed", "transparent_dark", "preferred_color_scheme"
-  staticman:
-    branch: # "master"
-    endpoint: # "https://{your Staticman v3 API}/v3/entry/github/"
-reCaptcha:
-  siteKey:
-  secret:
-atom_feed:
-  path: # blank (default) uses feed.xml
-  hide: # true, false (default)
-search: # true, false (default)
-search_full_content: # true, false (default)
-search_provider: # lunr (default), algolia, google
-algolia:
-  application_id: # YOUR_APPLICATION_ID
-  index_name: # YOUR_INDEX_NAME
-  search_only_api_key: # YOUR_SEARCH_ONLY_API_KEY
-  powered_by: # true (default), false
-google:
-  search_engine_id: # YOUR_SEARCH_ENGINE_ID
-  instant_search: # false (default), true
-# SEO Related
-google_site_verification:
-bing_site_verification:
-naver_site_verification:
-yandex_site_verification:
-baidu_site_verification:
+date_format: "%Y.%m.%d"
+timezone: Asia/Seoul
+search: false
 
-# Social Sharing
-twitter:
-  username:
-facebook:
-  username:
-  app_id:
-  publisher:
-og_image: # Open Graph/Twitter default site image
-# For specifying social profiles
-# - https://developers.google.com/structured-data/customize/social-profiles
-social:
-  type: # Person or Organization (defaults to Person)
-  name: # If the user or organization name differs from the site's name
-  links: # An array of links to social media profiles
-
-# Analytics
-analytics:
-  provider: false # false (default), "google", "google-universal", "google-gtag", "custom"
-  google:
-    tracking_id:
-    anonymize_ip: # true, false (default)
-
-# Site Author
 author:
   name: "fullfish"
-  avatar: # path of avatar image, e.g. "/assets/images/bio-photo.jpg"
-  bio: "just studying"
-  location: "전주"
-  email:
+  bio: "앱을 만들고, 배운 것을 기록합니다"
   links:
-    - label: "Email"
-      icon: "fas fa-fw fa-envelope-square"
-      # url: "mailto:your.name@email.com"
-    - label: "Website"
-      icon: "fas fa-fw fa-link"
-      # url: "https://your-website.com"
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url: "https://twitter.com/"
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url: "https://facebook.com/"
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url: "https://github.com/"
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url: "https://instagram.com/"
+      url: "https://github.com/full-fish"
 
-# Site Footer
 footer:
   links:
-    - label: "Twitter"
-      icon: "fab fa-fw fa-twitter-square"
-      # url:
-    - label: "Facebook"
-      icon: "fab fa-fw fa-facebook-square"
-      # url:
     - label: "GitHub"
       icon: "fab fa-fw fa-github"
-      # url:
-    - label: "GitLab"
-      icon: "fab fa-fw fa-gitlab"
-      # url:
-    - label: "Bitbucket"
-      icon: "fab fa-fw fa-bitbucket"
-      # url:
-    - label: "Instagram"
-      icon: "fab fa-fw fa-instagram"
-      # url:
+      url: "https://github.com/full-fish"
 
-# Reading Files
+# Reading files
 include:
-  - .htaccess
   - _pages
   - app-ads.txt
 exclude:
-  - "*.sublime-project"
-  - "*.sublime-workspace"
-  - vendor
-  - .asset-cache
   - .bundle
-  - .jekyll-assets-cache
+  - .jekyll-cache
   - .sass-cache
+  - .serena
+  - .venv
+  - .env
+  - vendor
+  - node_modules
+  - Gemfile
+  - Gemfile.lock
+  - LICENSE
+  - README.md
+  - TODO.md
+  - CHANGELOG.md
+  - "*.gemspec"
+  - package.json
+  - package-lock.json
+  - banner.js
+  - Rakefile
+  - staticman.yml
+  - screenshot*.png
+  - Pocketlog_img.png
+  - docs
+  - test
+  - scripts
+  - fullfish-1-1 # 티스토리 원본 백업 (로컬 전용)
   - assets/js/plugins
   - assets/js/_main.js
   - assets/js/vendor
-  - Capfile
-  - CHANGELOG
-  - config
-  - Gemfile
-  - Gruntfile.js
-  - gulpfile.js
-  - LICENSE
-  - log
-  - node_modules
-  - package.json
-  - package-lock.json
-  - Rakefile
-  - README
-  - tmp
-  - /docs # ignore Minimal Mistakes /docs
-  - /test # ignore Minimal Mistakes /test
 keep_files:
   - .git
-  - .svn
 encoding: "utf-8"
-markdown_ext: "markdown,mkdown,mkdn,mkd,md"
 
 # Conversion
 markdown: kramdown
 highlighter: rouge
-lsi: false
 excerpt_separator: "\n\n"
-incremental: false
-
-# Markdown Processing
 kramdown:
   input: GFM
   hard_wrap: false
@@ -201,84 +83,53 @@ kramdown:
   footnote_nr: 1
   entity_output: as_char
   toc_levels: 1..6
-  smart_quotes: lsquo,rsquo,ldquo,rdquo
-  enable_coderay: false
+  # 글에 명령어·코드가 많아 --, ..., 따옴표를 바꾸지 않고 그대로 둡니다 (복사해서 바로 쓸 수 있게)
+  smart_quotes: apos,apos,quot,quot
+  typographic_symbols: { ndash: "--", mdash: "---", hellip: "..." }
 
-# Sass/SCSS
 sass:
   sass_dir: _sass
-  style: compressed # https://sass-lang.com/documentation/file.SASS_REFERENCE.html#output_style
+  style: compressed
 
 # Outputting
-permalink: /:categories/:title/
-# 홈(index.html)이 permalink: / 를 고정 사용 중이라 paginate 활성화 시
-# jekyll-paginate가 만드는 모든 page2..N 이 같은 permalink: / 로 충돌합니다.
-# 홈이 앱 소개 페이지(apps-home)라 paginator를 쓰지 않으므로 비활성화합니다.
-# paginate: 5 # amount of posts to show
-# paginate_path: /page:num/
-timezone: # https://en.wikipedia.org/wiki/List_of_tz_database_time_zones
+# 카테고리를 URL에서 뺐습니다(이름을 바꿔도 글 주소가 안 바뀌게).
+# 예전 주소(/:categories/:title/)는 _plugins/taxonomy_pages.rb 가 리다이렉트 페이지로 남깁니다.
+permalink: /blog/:title/
 
-# Plugins (previously gems:)
 plugins:
-  - jekyll-paginate
   - jekyll-sitemap
-  - jekyll-gist
   - jekyll-feed
   - jekyll-include-cache
 
-# mimic GitHub Pages with --safe
-whitelist:
-  - jekyll-paginate
-  - jekyll-sitemap
-  - jekyll-gist
-  - jekyll-feed
-  - jekyll-include-cache
-
-# Archives
-#  Type
-#  - GitHub Pages compatible archive pages built with Liquid ~> type: liquid (default)
-#  - Jekyll Archives plugin archive pages ~> type: jekyll-archives
-#  Path (examples)
-#  - Archive page should exist at path when using Liquid method or you can
-#    expect broken links (especially with breadcrumbs enabled)
-#  - <base_path>/tags/my-awesome-tag/index.html ~> path: /tags/
-#  - <base_path>/categories/my-awesome-category/index.html ~> path: /categories/
-#  - <base_path>/my-awesome-category/index.html ~> path: /
+# 카테고리/태그 페이지는 _plugins/taxonomy_pages.rb 가 만듭니다.
+# type 을 jekyll-archives 로 두면 테마가 /categories/<이름>/ 형태로 링크합니다.
 category_archive:
-  type: liquid
+  type: jekyll-archives
   path: /categories/
 tag_archive:
-  type: liquid
+  type: jekyll-archives
   path: /tags/
-# https://github.com/jekyll/jekyll-archives
-# jekyll-archives:
-#   enabled:
-#     - categories
-#     - tags
-#   layouts:
-#     category: archive-taxonomy
-#     tag: archive-taxonomy
-#   permalinks:
-#     category: /categories/:name/
-#     tag: /tags/:name/
 
-# HTML Compression
-# - https://jch.penibelst.de/
 compress_html:
   clippings: all
   ignore:
     envs: development
 
-# Defaults
 defaults:
-  # _posts
   - scope:
       path: ""
       type: posts
     values:
       layout: single
       author_profile: true
+      show_date: true
       read_time: false
-      comments: # true
-      share: true
+      share: false
       related: true
+  - scope:
+      path: "_pages"
+    values:
+      layout: single
+      author_profile: false
+      toc_label: "목차"
+      toc_icon: "list"

@@ -1,6 +1,7 @@
 ---
-layout: nil
+layout: null
 permalink: /admin/config.json
+sitemap: false
 ---
 {
   "masterGithubLogin": "{{ site.data.admin.master_github_login }}",

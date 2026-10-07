@@ -49,11 +49,7 @@ hashtag 3은 아무곳에서도 참조안하니 삭제되어야한다고 생각�
 
 해당 공식문서 : <https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/>
 
-[Advanced M:N Associations | Sequelize
-
-Make sure you have read the associations guide before reading this guide.
-
-sequelize.org](https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/)
+[Advanced M:N Associations \| Sequelize](https://sequelize.org/docs/v6/advanced-association-concepts/advanced-many-to-many/)
 
 공식문서를 보면
 
@@ -354,4 +350,4 @@ post: async (req, res) => {
 
 cron을 이용해서 주기적으로 삭제 구현 (delete나 patch때 마다 지워주면 계산낭비라서 주기적 삭제를 해줬다)
 
-<https://fullfish.tistory.com/94?category=1054038>
+[node-cron을 이용한 schedule](/blog/94-node-cron%EC%9D%84-%EC%9D%B4%EC%9A%A9%ED%95%9C-schedule/)

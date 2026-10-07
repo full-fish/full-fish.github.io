@@ -65,7 +65,9 @@ OneHotEncoder(handle_unknown="ignore")
 remainder
 "drop": 나머지 컬럼 버림(기본값)
 "passthrough": 나머지 컬럼을 그대로 보냄(모델에 같이 들어감)'''
-``````python
+```
+
+```python
 SimpleImputer: 전처리 해줌
 ```
 

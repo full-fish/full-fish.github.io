@@ -1,0 +1,99 @@
+/* ==========================================================================
+   fullfish 전역 스타일 (테마 기본값 위에 덮어씀)
+   ========================================================================== */
+
+/* 테마 기본(16→22px)은 한글 본문에 너무 커서 한 단계 줄임 */
+html {
+  font-size: 16px;
+
+  @include breakpoint($medium) {
+    font-size: 16px;
+  }
+
+  @include breakpoint($large) {
+    font-size: 17px;
+  }
+
+  @include breakpoint($x-large) {
+    font-size: 18px;
+  }
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  // 한글 단어 중간에서 줄이 바뀌지 않게, 긴 URL은 넘치지 않게
+  word-break: keep-all;
+  overflow-wrap: break-word;
+}
+
+a {
+  text-underline-offset: 0.2em;
+  text-decoration-thickness: 1px;
+}
+
+// 테마의 a:focus (안쪽 점선)가 더 구체적이라 링크에도 같은 규칙을 명시
+a:focus-visible,
+:focus-visible {
+  outline: 2px solid $ff-brand;
+  outline-offset: 2px;
+}
+
+a:focus:not(:focus-visible) {
+  outline: none;
+}
+
+/* Masthead */
+.masthead {
+  border-bottom-color: $border-color;
+}
+
+.site-logo img {
+  max-height: 1.75rem;
+}
+
+.site-title {
+  font-weight: 800;
+  letter-spacing: -0.01em;
+}
+
+.greedy-nav a {
+  font-weight: 600;
+}
+
+// 모바일에서 상단 링크 터치 영역을 44px 가까이로 (보이는 크기·높이는 그대로)
+@include breakpoint(max-width $medium - 1px) {
+  .greedy-nav .site-title,
+  .greedy-nav .visible-links a {
+    margin-top: -0.6rem;
+    margin-bottom: -0.6rem;
+    padding: 0.6rem 0;
+  }
+}
+
+/* Page */
+.page__title,
+.archive__item-title,
+.page__content h1,
+.page__content h2,
+.page__content h3 {
+  letter-spacing: -0.01em;
+}
+
+.page__content {
+  line-height: 1.75;
+
+  img {
+    border-radius: $border-radius;
+  }
+
+  pre,
+  code {
+    word-break: normal;
+  }
+}
+
+/* Footer */
+.page__footer {
+  margin-top: 4em;
+  color: $muted-text-color;
+}

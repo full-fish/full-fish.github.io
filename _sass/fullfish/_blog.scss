@@ -1,0 +1,386 @@
+/* ==========================================================================
+   블로그 (목록, 카테고리/태그, 사이드바, 글 하단)
+   ========================================================================== */
+
+/* 사이드바: 테마 기본 반투명(opacity .75)은 글자가 흐려 보여서 끔 */
+.sidebar {
+  @include breakpoint($large) {
+    opacity: 1;
+  }
+}
+
+.page__title-count {
+  margin-left: 0.15em;
+  color: $muted-text-color;
+  font-size: 0.6em;
+  font-weight: 600;
+  vertical-align: middle;
+}
+
+.breadcrumb {
+  margin: 1.5em 0 0.25em;
+  color: $muted-text-color;
+  font-size: $type-size-6;
+
+  a {
+    color: inherit;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-color;
+      text-decoration: underline;
+    }
+  }
+}
+
+/* 글 목록 한 줄 */
+.post-list {
+  margin: 0 0 2em;
+  padding: 0;
+  list-style: none;
+}
+
+.post-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2em;
+  margin: 0;
+  padding: 0.85em 0;
+  border-bottom: 1px solid $border-color;
+
+  &[hidden] {
+    display: none;
+  }
+
+  &__title {
+    color: $text-color;
+    font-weight: 600;
+    line-height: 1.45;
+    text-decoration: none;
+
+    &:hover {
+      color: $link-color;
+      text-decoration: underline;
+    }
+  }
+
+  &__meta {
+    color: $muted-text-color;
+    font-size: $type-size-6;
+  }
+}
+
+time {
+  font-variant-numeric: tabular-nums;
+}
+
+.post-year {
+  &[hidden] {
+    display: none;
+  }
+
+  &__title {
+    display: flex;
+    align-items: baseline;
+    gap: 0.5em;
+    margin: 2em 0 0.25em;
+    padding-bottom: 0.4em;
+    font-size: $type-size-4;
+    border-bottom: 2px solid $text-color;
+  }
+
+  &__count {
+    color: $muted-text-color;
+    font-size: $type-size-6;
+    font-weight: 600;
+  }
+}
+
+/* /blog/ 찾기 */
+.post-filter {
+  margin: 1.5em 0 0;
+
+  &__input {
+    width: 100%;
+    margin: 0;
+    padding: 0.75em 1em;
+    font-size: $type-size-5;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    box-shadow: none;
+
+    &:focus {
+      border-color: $ff-brand;
+      outline: none;
+      box-shadow: 0 0 0 3px $ff-brand-soft;
+    }
+  }
+
+  &__count {
+    margin: 0.5em 0 0;
+    color: $muted-text-color;
+    font-size: $type-size-6;
+  }
+
+  &__empty {
+    margin: 2em 0;
+    color: $muted-text-color;
+    text-align: center;
+  }
+}
+
+/* 칩 (하위 카테고리, 태그) */
+.chip-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5em;
+  margin: 1em 0 1.5em;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+}
+
+.chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4em;
+  padding: 0.3em 0.8em;
+  color: $text-color;
+  font-size: 0.8125rem; // rem: 글 하단(.page__meta)의 작은 글씨와 겹쳐 줄어들지 않게
+  line-height: 1.5;
+  text-decoration: none;
+  background: $ff-surface;
+  border: 1px solid $border-color;
+  border-radius: 999px;
+
+  &:hover {
+    color: $ff-brand;
+    border-color: $ff-brand;
+    text-decoration: none;
+  }
+
+  &__count {
+    color: $muted-text-color;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* 사이드바 카테고리 트리 (모바일에서는 접었다 펴기) */
+.category-nav {
+  margin: 1em 0;
+  font-size: 0.875rem;
+
+  li {
+    font-size: inherit; // 테마의 .sidebar li { font-size: .75em } 가 겹쳐 작아지지 않게
+  }
+
+  > summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0.6em 0.9em;
+    font-weight: 700;
+    list-style: none;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+    cursor: pointer;
+
+    &::-webkit-details-marker {
+      display: none;
+    }
+
+    &::after {
+      content: "";
+      width: 0.45em;
+      height: 0.45em;
+      margin-right: 3px; // 회전한 화살표가 사이드바 밖으로 나가 가로 스크롤바가 생기지 않게
+      border: solid $muted-text-color;
+      border-width: 0 2px 2px 0;
+      transform: rotate(45deg) translate(-25%, -25%);
+    }
+  }
+
+  &[open] > summary {
+    margin-bottom: 0.5em;
+
+    &::after {
+      transform: rotate(-135deg);
+    }
+  }
+
+  @include breakpoint($large) {
+    > summary {
+      padding: 0 0 0.5em;
+      border: 0;
+      border-bottom: 1px solid $border-color;
+      border-radius: 0;
+    }
+  }
+
+  &__all,
+  &__more {
+    display: flex;
+    justify-content: space-between;
+    padding: 0.35em 0.5em;
+    color: $text-color;
+    font-weight: 700;
+    text-decoration: none;
+    border-radius: 6px;
+
+    &:hover {
+      background: $ff-surface;
+    }
+  }
+
+  &__more {
+    margin-top: 0.5em;
+    color: $muted-text-color;
+    font-weight: 400;
+  }
+}
+
+.category-tree {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  li {
+    margin: 0;
+  }
+
+  a {
+    display: flex;
+    justify-content: space-between;
+    gap: 0.75em;
+    padding: 0.35em 0.5em;
+    color: $text-color;
+    font-weight: 700;
+    line-height: 1.4;
+    text-decoration: none;
+    border-radius: 6px;
+
+    &:hover {
+      background: $ff-surface;
+    }
+
+    &[aria-current="page"] {
+      color: $ff-brand;
+      background: $ff-brand-soft;
+    }
+  }
+
+  &--child {
+    margin: 0 0 0.35em 0.75em;
+    padding-left: 0.5em;
+    border-left: 1px solid $border-color;
+
+    a {
+      color: $muted-text-color;
+      font-weight: 400;
+    }
+  }
+
+  &__count {
+    flex: none;
+    color: $muted-text-color;
+    font-weight: 400;
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* /categories/ 전체 트리 */
+.category-index {
+  margin-top: 1.5em;
+  font-size: $type-size-5;
+
+  > .category-tree {
+    @include breakpoint($medium) {
+      columns: 2;
+      column-gap: 2.5em;
+    }
+
+    > li {
+      break-inside: avoid;
+      margin-bottom: 1em;
+    }
+  }
+}
+
+/* 글 머리 / 꼬리 */
+.post-meta {
+  margin: 0.5em 0 1.75em;
+  padding-bottom: 1.25em;
+  color: $muted-text-color;
+  font-size: $type-size-6;
+  border-bottom: 1px solid $border-color;
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: $link-color;
+    }
+  }
+
+  &__sep {
+    margin: 0 0.35em;
+  }
+}
+
+.post-nav {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 0.75em;
+  clear: both;
+  margin: 2.5em 0 0;
+
+  @include breakpoint($medium) {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  &__link {
+    display: flex;
+    flex-direction: column;
+    gap: 0.25em;
+    padding: 0.9em 1.1em;
+    color: $text-color;
+    text-decoration: none;
+    border: 1px solid $border-color;
+    border-radius: $border-radius;
+
+    &:hover {
+      border-color: $ff-brand;
+    }
+
+    &--next {
+      text-align: right;
+
+      @include breakpoint($medium) {
+        grid-column: 2;
+      }
+    }
+  }
+
+  &__label {
+    color: $muted-text-color;
+    font-size: $type-size-6;
+  }
+
+  &__title {
+    font-weight: 600;
+    line-height: 1.45;
+  }
+}
+
+.related-posts {
+  clear: both;
+  padding-top: 2.5em;
+
+  &__title {
+    margin: 0 0 0.25em;
+    font-size: $type-size-5;
+  }
+}

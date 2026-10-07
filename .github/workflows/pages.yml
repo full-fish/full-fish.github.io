@@ -24,17 +24,13 @@ jobs:
       - name: Setup Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: "3.2"
-          bundler-cache: false
-
-      - name: Ensure lockfile supports Linux platform
-        run: bundle lock --add-platform x86_64-linux
-
-      - name: Install gems
-        run: bundle install --jobs 4 --retry 3
+          ruby-version: "3.3"
+          bundler-cache: true
 
       - name: Build with Jekyll
         run: bundle exec jekyll build --trace
+        env:
+          JEKYLL_ENV: production
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3

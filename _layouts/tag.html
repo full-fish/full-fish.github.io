@@ -1,10 +1,19 @@
 ---
-layout: archive
+layout: default
 ---
+{%- comment -%} _plugins/taxonomy_pages.rb 가 만드는 태그 페이지 {%- endcomment -%}
+<div id="main" role="main">
+  {% include sidebar.html %}
 
-{{ content }}
+  <div class="archive">
+    <nav class="breadcrumb" aria-label="현재 위치">
+      <a href="{{ '/blog/' | relative_url }}">블로그</a>
+      <span aria-hidden="true">›</span> <a href="{{ '/tags/' | relative_url }}">태그</a>
+    </nav>
+    <h1 id="page-title" class="page__title">#{{ page.title | escape }} <span class="page__title-count">{{ page.posts.size }}<span class="visually-hidden">개의 글</span></span></h1>
 
-{% assign entries_layout = page.entries_layout | default: 'list' %}
-<div class="entries-{{ entries_layout }}">
-  {% include posts-tag.html taxonomy=page.taxonomy type=entries_layout %}
+    <ul class="post-list">
+      {% for post in page.posts %}{% include post-row.html post=post %}{% endfor %}
+    </ul>
+  </div>
 </div>

@@ -12,11 +12,7 @@ Seed는 그 테이블에 더미데이터를 집어 넣는거
 
 공식문서 : <https://sequelize.org/docs/v6/other-topics/migrations/>
 
-[Migrations | Sequelize
-
-Just like you use version control systems such as Git to manage changes in your source code, you can use migrations to keep track of changes to the database. With migrations you can transfer your existing database into another state and vice versa: Those s
-
-sequelize.org](https://sequelize.org/docs/v6/other-topics/migrations/)
+[Migrations \| Sequelize](https://sequelize.org/docs/v6/other-topics/migrations/)
 
 **초기 세팅**
 
@@ -165,10 +161,6 @@ npx sequelize-cli db:seed:undo --seed name-of-seed-as-in-data // 특정 시드 �
 npx sequelize-cli db:seed:undo:all // 모든 시드 취소
 ```
 
-관계 설정에 대해 : <https://fullfish.tistory.com/92?category=1054038>
+관계 설정에 대해 : [Sequelize 관계 설정 1 : N, N : M(1대다, 다대다)](/blog/92-Sequelize-%EA%B4%80%EA%B3%84-%EC%84%A4%EC%A0%95-1-N,-N-M(1%EB%8C%80%EB%8B%A4,-%EB%8B%A4%EB%8C%80%EB%8B%A4)/)
 
-[Sequelize 관계 설정 1 : N, N : M(1대다, 다대다)
-
-trip : diary = 1 : N diart : hashtag = N : M 인 경우의 관계 설정 관계 설정방법은 2가지가 있다 마이그레이션과 모델 모두 이용하는 방법과 마이그레이션을 하지않고 모델만 이용하는 방법이 있는데 마
-
-fullfish.tistory.com](https://fullfish.tistory.com/92?category=1054038)
+[Sequelize 관계 설정 1 : N, N : M(1대다, 다대다)](/blog/92-Sequelize-%EA%B4%80%EA%B3%84-%EC%84%A4%EC%A0%95-1-N,-N-M(1%EB%8C%80%EB%8B%A4,-%EB%8B%A4%EB%8C%80%EB%8B%A4)/)

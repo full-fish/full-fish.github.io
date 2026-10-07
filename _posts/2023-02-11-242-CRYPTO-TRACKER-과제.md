@@ -7,8 +7,6 @@ categories: ["nomadcoder", "React JS 마스터클래스"]
 
 <https://full-fish.github.io/nomardcoders-ReactJSmasterClass-cryptoTracker/>
 
-[React App
-
-full-fish.github.io](https://full-fish.github.io/nomardcoders-ReactJSmasterClass-cryptoTracker/)
+[React App](https://full-fish.github.io/nomardcoders-ReactJSmasterClass-cryptoTracker/)
 
 시간이 없어서 css는 안건드렸다...

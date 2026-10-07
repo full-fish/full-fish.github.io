@@ -1,7 +1,10 @@
-# List of apps shown on the homepage.
-# Add a new entry here whenever a new app is released.
+# 홈(/)에 나오는 앱 목록. 앱을 출시하면 여기에 항목을 하나 추가합니다.
+# icon: 512px PNG (assets/images/apps/<id>/icon.png)
+# play_store_url 이 없으면 "출시 준비 중"으로 보입니다.
 - id: fullweight
   name: "FullWeight"
+  platform: "Android"
+  accent: "#2f6fb0"
   tagline: "체중, 식사, 눈바디까지 한 번에 기록하는 다이어트 관리 앱"
   description: >
     몸무게, 식사, 눈바디(체형 변화) 사진을 한 곳에서 기록하고, AI가 음식 사진을 분석해
@@ -14,3 +17,20 @@
     - "AI 음식 사진 분석으로 자동 칼로리 계산"
     - "Google Drive 백업 및 복원"
     - "챌린지 기능으로 목표 관리"
+
+- id: pocketlog
+  name: "Pocketlog"
+  platform: "Android"
+  accent: "#4a56e2"
+  tagline: "결제 알림과 스크린샷으로 저절로 채워지는 가계부"
+  description: >
+    카드·은행·페이 알림과 문자를 읽어 지출을 바로 기록하고, 알림이 없는 결제는
+    주문내역 스크린샷 한 장으로 채우는 가계부입니다. 회원가입 없이 데이터는 휴대폰 안에만 저장됩니다.
+  icon: /assets/images/apps/pocketlog/icon.png
+  privacy_url: /privacy/pocketlog/
+  terms_url: /terms/pocketlog/
+  features:
+    - "카드 · 은행 · 페이 알림과 문자로 자동 기록"
+    - "스크린샷 · 영수증 AI 분석 (동의한 경우에만)"
+    - "예산, 월간 리포트, 홈 화면 위젯"
+    - "내 Google 드라이브에 암호화 백업"

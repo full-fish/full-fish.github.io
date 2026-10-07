@@ -1,6 +1,7 @@
 ---
-layout: nil
+layout: null
 permalink: /admin/
+sitemap: false
 ---
 
 <!doctype html>
@@ -8,6 +9,8 @@ permalink: /admin/
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="icon" href="/assets/images/logo.svg" type="image/svg+xml" />
     <title>Category Admin</title>
     <style>
       :root {
@@ -143,11 +146,11 @@ permalink: /admin/
         <h2>1) 관리자 인증</h2>
         <div class="row">
           <div style="flex:2; min-width:280px;">
-            <label>GitHub Personal Access Token (repo contents write)</label>
+            <label for="token">GitHub Personal Access Token (repo contents write)</label>
             <input id="token" type="password" placeholder="ghp_..." />
           </div>
           <div style="min-width:220px;">
-            <label>Branch</label>
+            <label for="branch">Branch</label>
             <input id="branch" type="text" placeholder="main" />
           </div>
         </div>
@@ -171,7 +174,7 @@ permalink: /admin/
         <div id="tree-root"></div>
         <div class="row" style="margin-top:12px;">
           <div style="flex:1; min-width:320px;">
-            <label>Commit message</label>
+            <label for="commit-msg">Commit message</label>
             <input
               id="commit-msg"
               type="text"
@@ -185,7 +188,7 @@ permalink: /admin/
         </div>
         <div class="card" style="margin-top:12px;">
           <h2 style="font-size:16px;">미리보기 (YAML)</h2>
-          <textarea id="yaml-preview" readonly></textarea>
+          <textarea id="yaml-preview" aria-label="미리보기 (YAML)" readonly></textarea>
         </div>
       </section>
     </div>
